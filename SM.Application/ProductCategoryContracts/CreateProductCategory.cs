@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Application.SM.Application.Contracts.ProductCategoryContracts
+﻿namespace ShopManagement.Application.Contracts.ProductCategoryContracts
 {
     public class CreateProductCategory
     {

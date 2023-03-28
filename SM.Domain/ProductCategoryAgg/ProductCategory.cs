@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _0_Framework;
+using _0_Framework.Domain;
 
 namespace SM.Domain.ProductCategoryAgg
 {

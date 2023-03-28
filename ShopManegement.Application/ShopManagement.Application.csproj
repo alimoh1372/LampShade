@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ProductCategoryApplication\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SM.Application\ShopManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\SM.Domain\SM.Domain.csproj" />
   </ItemGroup>
 
