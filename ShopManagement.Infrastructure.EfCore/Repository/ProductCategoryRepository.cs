@@ -3,43 +3,37 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using _0_Framework.Infrastructure;
 using ShopManagement.Application.Contracts.ProductCategoryContracts;
 using SM.Domain.ProductCategoryAgg;
 
 namespace ShopManagement.Infrastructure.EfCore.Repository
 {
-    public class ProductCategoryRepository:IProductCategoryRepository
+    public class ProductCategoryRepository:BaseRepository<long,ProductCategory>,IProductCategoryRepository
     {
         private readonly ShopContext _context;
 
-        public ProductCategoryRepository(ShopContext context)
+        public ProductCategoryRepository(ShopContext context):base(context)
         {
             _context = context;
         }
 
-        public void Create(ProductCategory entity)
+        public EditProductCategory GetDetails(long id)
         {
-            _context.ProductCategories.Add(entity);
-        }
-
-        public ProductCategory Get(long id)
-        {
-            return _context.ProductCategories.Find(id);
-        }
-
-        public List<ProductCategory> GetAll()
-        {
-          return  _context.ProductCategories.ToList();
-        }
-
-        public bool IsExists(Expression<Func<ProductCategory, bool>> predicate)
-        {
-          return  _context.ProductCategories.Any(predicate);
-        }
-
-        public void SaveChanges()
-        {
-            _context.SaveChanges();
+            return _context.ProductCategories
+                .Select(x => new EditProductCategory
+            {
+                Id = x.Id,
+                Description = x.Description,
+                Keywords = x.Keywords,
+                MetaDescription = x.MetaDescription,
+                Name = x.Name,
+                Picture = x.Picture,
+                PictureAlt = x.PictureAlt,
+                PictureTitle = x.PictureTitle,
+                Slug = x.Slug
+            })
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public List<ProductCategoryViewModel> Search(SearchProductCategoryModel searchModel)

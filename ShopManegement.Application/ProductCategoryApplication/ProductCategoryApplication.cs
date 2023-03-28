@@ -54,19 +54,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
 
         public EditProductCategory GetDetails(long id)
         {
-           ProductCategory productCategory= _productCategoryRepository.Get(id);
-           return new EditProductCategory
-           {
-               Id = productCategory.Id,
-               Description = productCategory.Description,
-               Keywords = productCategory.Keywords,
-               MetaDescription = productCategory.MetaDescription,
-               Name = productCategory.Name,
-               Picture = productCategory.Picture,
-               PictureAlt = productCategory.PictureAlt,
-               PictureTitle = productCategory.PictureTitle,
-               Slug = productCategory.Slug
-           };
+           return _productCategoryRepository.GetDetails(id);
         }
 
         public List<ProductCategoryViewModel> Search(SearchProductCategoryModel searchModel)
