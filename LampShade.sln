@@ -9,21 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SM.Application", "SM.Applic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SM.Domain", "SM.Domain", "{3467AD57-4F29-4A0E-BD4D-EC687F5F52E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0_Framework", "0_Framework\0_Framework.csproj", "{6C8FEC4C-D39F-4C64-BBEB-A5FA4EAC7022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "0_Framework", "0_Framework\0_Framework.csproj", "{6C8FEC4C-D39F-4C64-BBEB-A5FA4EAC7022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Domain", "SM.Domain\SM.Domain.csproj", "{7FA04EDD-8306-43EE-A58D-4A37033A4060}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SM.Domain", "SM.Domain\SM.Domain.csproj", "{7FA04EDD-8306-43EE-A58D-4A37033A4060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopManagement.Application.Contracts", "SM.Application\ShopManagement.Application.Contracts.csproj", "{1D684EA8-8D07-4195-AA1D-CEC8729760B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopManagement.Application.Contracts", "SM.Application\ShopManagement.Application.Contracts.csproj", "{1D684EA8-8D07-4195-AA1D-CEC8729760B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopManagement.Application", "ShopManegement.Application\ShopManagement.Application.csproj", "{FA6778BC-D684-4FCC-B5B6-28B2EF9C1C6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopManagement.Application", "ShopManegement.Application\ShopManagement.Application.csproj", "{FA6778BC-D684-4FCC-B5B6-28B2EF9C1C6A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SM.Infrastructure", "SM.Infrastructure", "{1509148B-17A6-49FA-BE79-78D5957F34A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopManagement.Infrastructure.EfCore", "ShopManagement.Infrastructure.EfCore\ShopManagement.Infrastructure.EfCore.csproj", "{5144B865-DBBF-4280-B695-4231EF31EC7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopManagement.Infrastructure.EfCore", "ShopManagement.Infrastructure.EfCore\ShopManagement.Infrastructure.EfCore.csproj", "{5144B865-DBBF-4280-B695-4231EF31EC7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopManagement.Configuration", "ShopManagment.Configuration\ShopManagement.Configuration.csproj", "{11316CEC-ED8A-4C84-88BE-A704D9AEBFEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShopManagement.Configuration", "ShopManagment.Configuration\ShopManagement.Configuration.csproj", "{11316CEC-ED8A-4C84-88BE-A704D9AEBFEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceHosts", "ServiceHosts\ServiceHosts.csproj", "{A0FD0A49-67FB-4A7E-96B7-2C8B10E8A070}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceHosts", "ServiceHosts\ServiceHosts.csproj", "{A0FD0A49-67FB-4A7E-96B7-2C8B10E8A070}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

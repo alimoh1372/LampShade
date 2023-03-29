@@ -45,8 +45,11 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 Name = x.Name,
                 Picture = x.Picture
             });
-            query = query.Where(x => x.Name.Contains(searchModel.Name)).OrderByDescending(x=>x.Id);
-            return query.ToList();
+            if (!string.IsNullOrWhiteSpace(searchModel.Name))
+            {
+                query = query.Where(x => x.Name.Contains(searchModel.Name));
+            }
+            return query.OrderByDescending(x=>x.Id).ToList();
         }
 
     }
