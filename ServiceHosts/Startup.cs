@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using ShopManagement.Configuration;
+using ShopManagement.Infrastructure.EfCore;
 
 namespace ServiceHosts
 {
@@ -23,6 +26,11 @@ namespace ServiceHosts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectionString = Configuration.GetConnectionString("LampShadeDbNoc");
+            
+            
+            ShopManagementBootstrapper.Configure(services,connectionString);
+           
             services.AddRazorPages();
         }
 
