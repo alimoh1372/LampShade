@@ -58,6 +58,7 @@ namespace ServiceHosts
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                //endpoints.MapDefaultControllerRoute();
             });
         }
     }
