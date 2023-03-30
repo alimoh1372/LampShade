@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="~/Admin_Theme/images/favicon_1.ico">
 
     <title>@ViewData["Title"] | صفحه ی اصلی Lampshade</title>
-    <meta name="keywords" content="" >
+    <meta name="keywords" content="">
     <meta name="description" content="">
     <!-- Base Css Files -->
     <link href="~/Admin_Theme/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -36,7 +36,7 @@
 
 
     <script src="~/Admin_Theme/assets/js/modernizr.min.js"></script>
-    @await RenderSectionAsync("Styles",false)
+    @await RenderSectionAsync("Styles", false)
 </head>
 <body class="fixed-left">
 
@@ -63,11 +63,11 @@
                         </div>
                         @*unwanted search bar*@
                         @*<form class="navbar-form pull-left" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control search-bar" placeholder="Type here for search...">
-                            </div>
-                            <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                        </form>*@
+                                <div class="form-group">
+                                    <input type="text" class="form-control search-bar" placeholder="Type here for search...">
+                                </div>
+                                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+                            </form>*@
 
                         <ul class="nav navbar-nav navbar-right pull-right">
                             <li class="dropdown hidden-xs">
@@ -129,12 +129,12 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="hidden-xs">
-                                <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
-                            </li>
-                            <li class="hidden-xs">
-                                <a href="#" class="right-bar-toggle waves-effect waves-light"><i class="md md-chat"></i></a>
-                            </li>
+                            @*<li class="hidden-xs">
+                                    <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
+                                </li>
+                                <li class="hidden-xs">
+                                    <a href="#" class="right-bar-toggle waves-effect waves-light"><i class="md md-chat"></i></a>
+                                </li>*@
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true"><img src="~/Admin_Theme/assets/images/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
                                 <ul class="dropdown-menu">
@@ -203,13 +203,13 @@
             <div class="content">
                 <div class="container">
 
-                   @RenderBody()
+                    @RenderBody()
                 </div> <!-- container -->
 
             </div> <!-- content -->
 
             <footer class="footer text-right">
-                2015 © Moltran.
+                <span id="datetimenow"></span> © AliMohammadzade.
             </footer>
 
         </div>
@@ -217,116 +217,127 @@
         <!-- End Right content here -->
         <!-- ============================================================== -->
         <!-- Right Sidebar -->
-        <div class="side-bar right-bar nicescroll">
-            <h4 class="text-center">Chat</h4>
-            <div class="contact-list nicescroll">
-                <ul class="list-group contacts-list">
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-1.jpg" alt="">
-                            </div>
-                            <span class="name">Chadengle</span>
-                            <i class="fa fa-circle online"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-2.jpg" alt="">
-                            </div>
-                            <span class="name">Tomaslau</span>
-                            <i class="fa fa-circle online"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-3.jpg" alt="">
-                            </div>
-                            <span class="name">Stillnotdavid</span>
-                            <i class="fa fa-circle online"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-4.jpg" alt="">
-                            </div>
-                            <span class="name">Kurafire</span>
-                            <i class="fa fa-circle online"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-5.jpg" alt="">
-                            </div>
-                            <span class="name">Shahedk</span>
-                            <i class="fa fa-circle away"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-6.jpg" alt="">
-                            </div>
-                            <span class="name">Adhamdannaway</span>
-                            <i class="fa fa-circle away"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-7.jpg" alt="">
-                            </div>
-                            <span class="name">Ok</span>
-                            <i class="fa fa-circle away"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-8.jpg" alt="">
-                            </div>
-                            <span class="name">Arashasghari</span>
-                            <i class="fa fa-circle offline"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-9.jpg" alt="">
-                            </div>
-                            <span class="name">Joshaustin</span>
-                            <i class="fa fa-circle offline"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="#">
-                            <div class="avatar">
-                                <img src="~/Admin_Theme/images/users/avatar-10.jpg" alt="">
-                            </div>
-                            <span class="name">Sortino</span>
-                            <i class="fa fa-circle offline"></i>
-                        </a>
-                        <span class="clearfix"></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        @*<div class="side-bar right-bar nicescroll">
+                <h4 class="text-center">Chat</h4>
+                <div class="contact-list nicescroll">
+                    <ul class="list-group contacts-list">
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-1.jpg" alt="">
+                                </div>
+                                <span class="name">Chadengle</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-2.jpg" alt="">
+                                </div>
+                                <span class="name">Tomaslau</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-3.jpg" alt="">
+                                </div>
+                                <span class="name">Stillnotdavid</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-4.jpg" alt="">
+                                </div>
+                                <span class="name">Kurafire</span>
+                                <i class="fa fa-circle online"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-5.jpg" alt="">
+                                </div>
+                                <span class="name">Shahedk</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-6.jpg" alt="">
+                                </div>
+                                <span class="name">Adhamdannaway</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-7.jpg" alt="">
+                                </div>
+                                <span class="name">Ok</span>
+                                <i class="fa fa-circle away"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-8.jpg" alt="">
+                                </div>
+                                <span class="name">Arashasghari</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-9.jpg" alt="">
+                                </div>
+                                <span class="name">Joshaustin</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <div class="avatar">
+                                    <img src="~/Admin_Theme/images/users/avatar-10.jpg" alt="">
+                                </div>
+                                <span class="name">Sortino</span>
+                                <i class="fa fa-circle offline"></i>
+                            </a>
+                            <span class="clearfix"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>*@
         <!-- /Right-bar -->
 
     </div>
+    <!-- Modal Content start -->
+    <div id="MainModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content" id="ModalContent">
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Content end -->
     <!-- END wrapper -->
     <!-- <script> -->
     <!-- var resizefunc = []; -->
@@ -362,7 +373,9 @@
     <!-- Counter-up -->
     <script src="~/Admin_Theme/assets/counterup/waypoints.min.js" type="text/javascript"></script>
     <script src="~/Admin_Theme/assets/counterup/jquery.counterup.min.js" type="text/javascript"></script>
-
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    <script src="~/Admin_Theme/assets/js/site.js"></script>
     <!-- CUSTOM JS -->
     <script src="~/Admin_Theme/assets/js/jquery.app.js"></script>
 
@@ -386,9 +399,13 @@
     <!-- }); -->
     <!-- }); -->
     <!-- </script> -->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-   @await RenderSectionAsync("Scripts",false)
+
+    <script type="text/javascript">
+        const sapn = document.getElementById("datetimenow");
+        const dt = new Date();
+        sapn.innerText = dt.getFullYear();
+    </script>
+    @await RenderSectionAsync("Scripts", false)
 </body>
 
 </html>
