@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using _0_Framework.Application;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManagement.Application.Contracts.ProductCategoryContracts;
@@ -33,6 +34,19 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.ProductCategories
         public JsonResult OnPostCreate(CreateProductCategory command)
         {
             var result = _productCategoryApplication.Create(command);
+            return new JsonResult(result);
+        }
+
+        public IActionResult OnGetEdit(long id)
+        {
+            EditProductCategory editProduct = _productCategoryApplication.GetDetails(id);
+            return Partial("Edit", editProduct);
+        }
+
+        public JsonResult OnPostEdit(EditProductCategory command)
+        {
+            OperationResult result = _productCategoryApplication.Edit(command);
+
             return new JsonResult(result);
         }
     }

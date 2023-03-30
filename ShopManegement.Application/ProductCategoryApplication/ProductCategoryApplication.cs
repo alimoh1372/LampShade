@@ -47,7 +47,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
             string slug = command.Slug.Slugify();
             productCategory.Edit(command.Name,command.Description,command.Picture,command.PictureAlt,command.PictureTitle
                 ,command.Keywords,command.MetaDescription,slug);
-
+            _productCategoryRepository.SaveChanges();
             return operationResult.Succedded();
 
         }
