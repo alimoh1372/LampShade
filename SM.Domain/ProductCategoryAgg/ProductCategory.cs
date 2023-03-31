@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using _0_Framework;
 using _0_Framework.Domain;
+using SM.Domain.ProductAgg;
 
 namespace SM.Domain.ProductCategoryAgg
 {
@@ -18,6 +19,7 @@ namespace SM.Domain.ProductCategoryAgg
         public string Keywords { get; private set; }
         public string MetaDescription { get; private set; }
         public string Slug { get; private set; }
+        public ICollection<Product> Products { get; set; }
 
         public ProductCategory(string name, string description, string picture, string pictureAlt, string pictureTitle, string keywords, string metaDescription, string slug)
         {

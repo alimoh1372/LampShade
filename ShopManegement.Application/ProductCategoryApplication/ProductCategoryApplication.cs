@@ -21,8 +21,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
 
             if (_productCategoryRepository.IsExists(x=>x.Name==command.Name))
             {
-                operationResult.Failed(
-                    "امکان ثبت گروه محصولات با عنوان(نام)تکراری وجود ندارد.لطفا مجددا تلاش بفرمائید.");
+                operationResult.Failed(ApplicationMessage.Duplication);
                 return operationResult;
             }
 
