@@ -1,6 +1,8 @@
-﻿using _0_Framework.Domain;
+﻿using System.Collections.Generic;
+using _0_Framework.Domain;
 using _0_Framework.Infrastructure;
 using SM.Domain.ProductCategoryAgg;
+using SM.Domain.ProductPictureAgg;
 
 namespace SM.Domain.ProductAgg
 {
@@ -23,6 +25,8 @@ namespace SM.Domain.ProductAgg
 
         public long FkCategoryId { get; private set; }
         public ProductCategory ProductCategory { get; private set; }
+
+        public ICollection<ProductPicture> ProductPictures { get; private set; }
 
         public Product(string name, string code, double unitPrice, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long fkCategoryId)
         {

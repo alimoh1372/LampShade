@@ -66,6 +66,7 @@ namespace ShopManagement.Application.Contracts.ProductContracts
         public string MetaDescription { get;  set; }
 
         [DisplayName("گروه محصول")]
+        [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         public long FkCategoryId { get;  set; }
         public List<ProductCategoryViewModel> ProductCategories { get; set; }
     }
