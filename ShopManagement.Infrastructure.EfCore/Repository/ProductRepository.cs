@@ -39,10 +39,10 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             }).FirstOrDefault(x=>x.Id==id);
         }
 
-        public List<ProductViewMode> Search(ProductSearchModel searchModel)
+        public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {
             var query = _context.Products.Include(x => x.ProductCategory)
-                .Select(x => new ProductViewMode
+                .Select(x => new ProductViewModel
                 {
                     Id = x.Id,
                     Picture = x.Picture,
@@ -50,6 +50,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     Code = x.Code,
                     UnitPrice = x.UnitPrice,
                     ProductCategory =x.ProductCategory.Name,
+                    CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
                     FkProductCategoryId = x.FkCategoryId
                     
                 });

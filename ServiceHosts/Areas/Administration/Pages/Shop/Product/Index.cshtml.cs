@@ -1,0 +1,62 @@
+using System.Collections.Generic;
+using System.Linq;
+using _0_Framework.Application;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using ShopManagement.Application.Contracts.ProductCategoryContracts;
+using ShopManagement.Application.Contracts.ProductContracts;
+
+namespace ServiceHosts.Areas.Administration.Pages.Shop.Product
+{
+    public class IndexModel : PageModel
+    {
+        public List<ProductViewModel> ProductViewModels { get; set; }
+
+        public ProductSearchModel SearchModel { get; set; }
+        public List<SelectListItem>  ProductCategoryItems { get; set; }
+        private readonly IProductApplication _productApplication;
+        private readonly IProductCategoryApplication _productCategoryApplication;
+
+        public IndexModel(IProductApplication productApplication, IProductCategoryApplication productCategoryApplication)
+        {
+            _productApplication = productApplication;
+            _productCategoryApplication = productCategoryApplication;
+        }
+
+        public void OnGet(ProductSearchModel searchModel)
+        {
+            ProductCategoryItems = _productCategoryApplication.Search(new SearchProductCategoryModel())
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Name
+                }).ToList();
+            ProductViewModels = _productApplication.Search(searchModel);
+        }
+
+        public IActionResult OnGetCreate()
+        {
+            return Partial("Create", new CreateProduct());
+        }
+
+        public JsonResult OnPostCreate(CreateProduct command)
+        {
+            var result = _productApplication.Create(command);
+            return new JsonResult(result);
+        }
+
+        public IActionResult OnGetEdit(long id)
+        {
+            EditProduct editProduct = _productApplication.GetDetails(id);
+            return Partial("Edit", editProduct);
+        }
+
+        public JsonResult OnPostEdit(EditProduct command)
+        {
+            OperationResult result = _productApplication.Edit(command);
+
+            return new JsonResult(result);
+        }
+    }
+}

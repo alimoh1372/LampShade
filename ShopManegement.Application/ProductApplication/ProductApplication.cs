@@ -63,7 +63,7 @@ namespace ShopManagement.Application.ProductApplication
             return result.Succedded();
         }
 
-        public EditProduct GetDetail(long id)
+        public EditProduct GetDetails(long id)
         {
             return _productRepository.GetDetails(id);
 
@@ -71,7 +71,7 @@ namespace ShopManagement.Application.ProductApplication
 
 
 
-        public List<ProductViewMode> Search(ProductSearchModel searchModel)
+        public List<ProductViewModel> Search(ProductSearchModel searchModel)
         {
             return _productRepository.Search(searchModel);
         }
