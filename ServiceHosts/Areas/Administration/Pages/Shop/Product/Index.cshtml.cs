@@ -26,7 +26,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.Product
 
         public void OnGet(ProductSearchModel searchModel)
         {
-            ProductCategoryItems = _productCategoryApplication.Search(new SearchProductCategoryModel())
+            ProductCategoryItems = _productCategoryApplication.Search()
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
@@ -37,7 +37,24 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.Product
 
         public IActionResult OnGetCreate()
         {
-            return Partial("Create", new CreateProduct());
+            CreateProduct model = new CreateProduct
+            {
+                Name = null,
+                Code = null,
+                UnitPrice = 0,
+                ShortDescription = null,
+                Description = null,
+                Picture = null,
+                PictureAlt = null,
+                PictureTitle = null,
+                Slug = null,
+                Keywords = null,
+                MetaDescription = null,
+                FkCategoryId = 0,
+                ProductCategories = _productCategoryApplication.Search(null)
+        };
+            
+            return Partial("Create", model);
         }
 
         public JsonResult OnPostCreate(CreateProduct command)
@@ -49,6 +66,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.Product
         public IActionResult OnGetEdit(long id)
         {
             EditProduct editProduct = _productApplication.GetDetails(id);
+            editProduct.ProductCategories = _productCategoryApplication.Search();
             return Partial("Edit", editProduct);
         }
 

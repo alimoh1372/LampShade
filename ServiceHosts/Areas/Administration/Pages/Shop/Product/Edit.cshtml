@@ -1,11 +1,10 @@
 ﻿@model ShopManagement.Application.Contracts.ProductContracts.EditProduct
 @{
-    ViewData["Title"] = "ویرایش گروه محصول " + Model.Name;
 }
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h4 class="modal-title">ویرایش گروه محصول : @Model.Name</h4>
+    <h4 class="modal-title">ویرایش محصول:@Model.Name</h4>
 </div>
 
 <form asp-page="./Index" asp-page-handler="Edit"
@@ -18,38 +17,68 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label">نام</label>
+                    <label asp-for="Name" class="control-label"></label>
                     <input type="text" class="form-control" asp-for="Name" >
                     <span asp-validation-for="Name" class="error"></span>
                 </div>
-            </div><div class="col-md-6">
+            </div>
+            <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="Slug" disabled="disabled" class="control-label">اسلاگ</label>
+                    <label asp-for="Code" class="control-label"></label>
+                    <input class="form-control" asp-for="Code">
+                    <span asp-validation-for="Code" class="error"></span>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Slug" class="control-label"></label>
                     <input type="text" class="form-control" asp-for="Slug">
                     <span asp-validation-for="Slug" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="UnitPrice" class="control-label"></label>
+                    <input class="form-control" asp-for="UnitPrice">
+                    <span asp-validation-for="UnitPrice" class="error"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="Picture" class="control-label"></label>
+                    <input type="text" class="form-control" asp-for="Picture">
+                    <span asp-validation-for="Picture" class="error"></span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label asp-for="Picture" class="control-label">عکس</label>
-                    <input type="text" class="form-control" asp-for="Picture" accept="image/*">
-                    <span asp-validation-for="Picture" class="error"></span>
+                    <label asp-for="FkCategoryId" class="control-label"></label>
+                    <select class="form-control" asp-for="FkCategoryId" asp-items='new SelectList(Model.ProductCategories,"Id","Name")'>
+                        <option value="0">انتخاب گروه محصول...</option>
+                    </select>
+                    <span asp-validation-for="FkCategoryId" class="error"></span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="PictureAlt" class="control-label">Alt</label>
+                    <label asp-for="PictureAlt" class="control-label"></label>
                     <input type="text" class="form-control" asp-for="PictureAlt">
                     <span asp-validation-for="PictureAlt" class="error"></span>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label asp-for="PictureTitle" class="control-label">عنوان</label>
+                    <label asp-for="PictureTitle" class="control-label"></label>
                     <input type="text" class="form-control" asp-for="PictureTitle">
                     <span asp-validation-for="PictureTitle" class="error"></span>
                 </div>
@@ -57,10 +86,20 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="ShortDescription" class="control-label"></label>
+                    <input class="form-control" asp-for="ShortDescription" onchange="fillField('ShortDescription', 'MetaDescription')">
+                    <span asp-validation-for="ShortDescription" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <div class="form-group no-margin">
-                    <label asp-for="Description" class="control-label">توضیحات</label>
-                    <textarea class="form-control autogrow" asp-for="Description" onchange="fillField('Description', 'MetaDescription')"
-                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea class="form-control autogrow" asp-for="Description"
+                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">
+                    </textarea>
                     <span asp-validation-for="Description" class="error"></span>
                 </div>
             </div>
@@ -68,7 +107,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label asp-for="Keywords" class="control-label">کلمات کلیدی</label>
+                    <label asp-for="Keywords" class="control-label"></label>
                     <input type="text" class="form-control" asp-for="Keywords">
                     <span asp-validation-for="Keywords" class="error"></span>
                 </div>
@@ -77,17 +116,17 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group no-margin">
-                    <label asp-for="MetaDescription" class="control-label">توضیحات متا</label>
+                    <label asp-for="MetaDescription" class="control-label"></label>
                     <textarea class="form-control autogrow" asp-for="MetaDescription"
                               style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
                     <span asp-validation-for="MetaDescription" class="error"></span>
                 </div>
             </div>
         </div>
+        <input type="hidden" asp-for="Id" value="@Model.Id"/>
     </div>
-    <input type="hidden" asp-for="Id" value="@Model.Id"/>
     <div class="modal-footer">
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
-        <button type="submit" class="btn btn-info waves-effect waves-light">ویرایش</button>
+        <button type="submit" class="btn btn-info waves-effect waves-light">ثبت ویرایش</button>
     </div>
 </form>

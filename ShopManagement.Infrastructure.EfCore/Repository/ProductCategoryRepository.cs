@@ -36,7 +36,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 .FirstOrDefault(x => x.Id == id);
         }
 
-        public List<ProductCategoryViewModel> Search(SearchProductCategoryModel searchModel)
+        public List<ProductCategoryViewModel> Search(SearchProductCategoryModel searchModel = null)
         {
             var query = _context.ProductCategories.Select(x => new ProductCategoryViewModel
             {
@@ -45,6 +45,10 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 Name = x.Name,
                 Picture = x.Picture
             });
+            if (searchModel==null)
+            {
+                return query.OrderByDescending(x => x.Id).ToList();
+            }
             if (!string.IsNullOrWhiteSpace(searchModel.Name))
             {
                 query = query.Where(x => x.Name.Contains(searchModel.Name));

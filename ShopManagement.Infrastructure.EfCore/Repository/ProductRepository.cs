@@ -58,8 +58,8 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 query = query.Where(x => x.Name.Contains(searchModel.Name));
             if (!string.IsNullOrWhiteSpace(searchModel.Code))
                 query = query.Where(x => x.Code.Contains(searchModel.Code));
-            if (searchModel.UnitPrice!=0)
-                query = query.Where(x => x.UnitPrice.ToString(CultureInfo.InvariantCulture).Contains(searchModel.UnitPrice.ToString(CultureInfo.InvariantCulture)) );
+            if (searchModel.UnitPrice!=0 && searchModel.UnitPrice!=null)
+                query = query.Where(x => x.UnitPrice == searchModel.UnitPrice );
             if (searchModel.FkCategoryId != 0)
                 query = query.Where(x => x.FkProductCategoryId == searchModel.FkCategoryId);
 

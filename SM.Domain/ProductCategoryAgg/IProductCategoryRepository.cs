@@ -8,7 +8,7 @@ namespace SM.Domain.ProductCategoryAgg
 {
     public interface IProductCategoryRepository:IBaseRepository<long,ProductCategory>
     {
-        List<ProductCategoryViewModel> Search(SearchProductCategoryModel searchModel);
+        List<ProductCategoryViewModel> Search(SearchProductCategoryModel searchModel=null);
         EditProductCategory GetDetails(long id);
     }
 }
