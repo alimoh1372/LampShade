@@ -47,6 +47,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     Id = x.Id,
                     Picture = x.Picture,
                     Name = x.Name,
+                    IsInStock = x.IsInStock,
                     Code = x.Code,
                     UnitPrice = x.UnitPrice,
                     ProductCategory =x.ProductCategory.Name,

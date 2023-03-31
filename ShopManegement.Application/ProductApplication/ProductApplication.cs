@@ -86,6 +86,7 @@ namespace ShopManagement.Application.ProductApplication
                 return result;
             }
             product.ExistInStock();
+            _productRepository.SaveChanges();
             return result.Succedded();
         }
 
@@ -99,6 +100,7 @@ namespace ShopManagement.Application.ProductApplication
                 return result;
             }
             product.RunningOutInStock();
+            _productRepository.SaveChanges();
             return result.Succedded();
         }
     }

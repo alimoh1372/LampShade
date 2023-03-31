@@ -2,11 +2,22 @@
 @model ServiceHosts.Areas.Administration.Pages.Shop.Product.IndexModel
 @{
     Layout = "Shared/_AdminLayout";
-    ViewData["Title"]="مدیریت محصولات";
+    ViewData["Title"] = "مدیریت محصولات";
 }
 @section Styles
 {
-    <link href="~/Admin_Theme/assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Admin_Theme/assets/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+}
+@if (!string.IsNullOrWhiteSpace(Model.Message))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.Notification.autoHideNotify('error'
+                , 'bottom right'
+                , 'پیغام خطا',
+                '@Model.Message')
+        });
+    </script>
 }
 <div class="row">
     <div class="col-sm-12">
@@ -25,7 +36,7 @@
             <div class="panel-body">
                 <form class="form-inline" role="form" method="get">
                     <div class="form-group">
-                        <label class="sr-only"  asp-for="SearchModel.Name"></label>
+                        <label class="sr-only" asp-for="SearchModel.Name"></label>
                         <input type="text" class="form-control" asp-for="SearchModel.Name" placeholder="نام  محصول">
                     </div>
                     <div class="form-group">
@@ -34,11 +45,11 @@
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.UnitPrice"></label>
-                        <input type="text"  class="form-control" asp-for="SearchModel.UnitPrice" placeholder="قیمت محصول">
+                        <input type="text" class="form-control" asp-for="SearchModel.UnitPrice" placeholder="قیمت محصول">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.FkCategoryId"></label>
-                        <select class="form-control"  asp-for="SearchModel.FkCategoryId" placeholder="قیمت محصول" asp-items="Model.ProductCategoryItems">
+                        <select class="form-control" asp-for="SearchModel.FkCategoryId" placeholder="قیمت محصول" asp-items="Model.ProductCategoryItems">
                             <option value="0">انتخاب گروه محصول</option>
                         </select>
                     </div>
@@ -65,33 +76,63 @@
                                     <th>#</th>
                                     <th>عکس</th>
                                     <th>نام</th>
+                                    <th>وضعیت درانبار</th>
                                     <th>کد محصول</th>
                                     <th>قیمت محصول</th>
                                     <th>تاریخ تولید</th>
                                     <th>گروه محصول</th>
+
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model.ProductViewModels)
                                 {
-                                <tr>
-                                    <td>@item.Id</td>
-                                    <td>
-                                        <img src="@item.Picture" style="width: 70px; height: 70px" />
-                                    </td>
-                                    <td>@item.Name</td>
-                                    <td>@item.Code</td>
-                                    <td>@item.UnitPrice</td>
-                                    <td>@item.CreationDate</td>
-                                    <td>@item.ProductCategory</td>
-                                    <td>
-                                        <a class="btn btn-warning pull-right m-rl-5"
-                                           href="#showmodal=@Url.Page("./Index","Edit",new {id=item.Id})">
-                                            <i class="fa fa-edit"></i> ویرایش
-                                        </a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>
+                                            <img src="@item.Picture" style="width: 70px; height: 70px" />
+                                        </td>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            @if(item.IsInStock)
+                                            {
+
+                                                <i class="fa fa-check-circle fa-3x text-success"> </i>
+
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-3x fa-remove text-danger"> </i>
+                                            }
+                                        </td>
+                                        <td>@item.Code</td>
+                                        <td>@item.UnitPrice</td>
+                                        <td>@item.CreationDate</td>
+                                        <td>@item.ProductCategory</td>
+                                        <td>
+                                            <a class="btn btn-warning btn-custom waves-effect waves-light m-b-5"
+                                               href="#showmodal=@Url.Page("./Index","Edit",new {id=item.Id})">
+                                                <i class="fa fa-edit"> </i> ویرایش
+                                            </a>
+                                            @if(item.IsInStock)
+                                            {
+                                                <a class="btn btn-danger btn-custom waves-effect waves-light m-b-5" asp-page-handler="RunningOutInStock" asp-route-id="@item.Id">
+                                                    <i class="fa fa-remove"> </i>&nbsp; اتمام موجودی
+                                                </a>
+
+                                            }
+                                            else
+                                            {
+
+                                                <a class="btn btn-success btn-custom waves-effect waves-light m-b-5" asp-page="./Index"
+                                                asp-page-handler="ExistInStock" asp-route-id="@item.Id">
+                                                <i class="fa fa-check"></i>&nbsp; موجود شدن
+                                                </a>
+                                            }
+
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -113,4 +154,5 @@
             $('#datatable').dataTable();
         });
     </script>
+
 }
