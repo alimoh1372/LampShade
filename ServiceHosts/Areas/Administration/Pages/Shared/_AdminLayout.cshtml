@@ -32,7 +32,8 @@
     <!-- Custom Files -->
     <link href="~/Admin_Theme/assets/css/helper.css" rel="stylesheet" type="text/css" />
     <link href="~/Admin_Theme//assets/css/style.css" rel="stylesheet" type="text/css" />
-
+    <!-- notification -->
+    <link href="~/Admin_Theme/assets/notifications/notification.css" rel="stylesheet">
 
 
     <script src="~/Admin_Theme/assets/js/modernizr.min.js"></script>
@@ -185,7 +186,7 @@
                                 <li><a href="#"> اسلایدر</a></li>
                                 <li><a asp-page="/shop/productCategories/index"> گروه محصولات</a></li>
                                 <li><a asp-page="/Shop/Product/index">محصولات</a></li>
-                                <li><a href="#">عکس محصولات</a></li>
+                                <li><a asp-page="/Shop/ProductPicture/Index">عکس محصولات</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -383,7 +384,10 @@
 
     <!-- Dashboard -->
     <script src="~/Admin_Theme/assets/js/jquery.dashboard.js"></script>
-
+    <!-- notification -->
+<script src="~/Admin_Theme/assets/notifications/notify.min.js"></script>
+<script src="~/Admin_Theme/assets/notifications/notify-metro.js"></script>
+<script src="~/Admin_Theme/assets/notifications/notifications.js"></script>
     <!-- Chat -->
     <script src="~/Admin_Theme/assets/js/jquery.chat.js"></script>
 

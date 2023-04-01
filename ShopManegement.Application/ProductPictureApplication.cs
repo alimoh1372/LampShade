@@ -52,7 +52,7 @@ namespace ShopManagement.Application
         {
             OperationResult result = new OperationResult();
             ProductPicture productPicture = null;
-            if (!_productPictureRepository.IsExists(x=> x.Id != id))
+            if (!_productPictureRepository.IsExists(x=> x.Id == id))
             {
                 return result.Failed(ApplicationMessage.NotFound);
             }
@@ -71,7 +71,7 @@ namespace ShopManagement.Application
 
             OperationResult result = new OperationResult();
             ProductPicture productPicture = null;
-            if (!_productPictureRepository.IsExists(x => x.Id != id))
+            if (!_productPictureRepository.IsExists(x => x.Id == id))
             {
                 return result.Failed(ApplicationMessage.NotFound);
             }
@@ -90,7 +90,7 @@ namespace ShopManagement.Application
             return _productPictureRepository.GetDetails(id);
         }
 
-        public List<ProductPictureViewModel> Search(PictureProductSearchModel searchModel = null)
+        public List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel = null)
         {
             return _productPictureRepository.Search(searchModel);
         }

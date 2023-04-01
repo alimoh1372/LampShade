@@ -12,6 +12,6 @@ namespace ShopManagement.Application.Contracts.ProductPictureContracts
         OperationResult Active(long id);
 
         EditProductPicture GetDetails(long id);
-        List<ProductPictureViewModel> Search(PictureProductSearchModel searchModel = null);
+        List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel = null);
     }
 }

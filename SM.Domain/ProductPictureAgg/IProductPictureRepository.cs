@@ -7,6 +7,6 @@ namespace SM.Domain.ProductPictureAgg
     public interface IProductPictureRepository:IBaseRepository<long,ProductPicture>
     {
         EditProductPicture GetDetails(long id);
-        List<ProductPictureViewModel> Search(PictureProductSearchModel searchModel = null);
+        List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel = null);
     }
 }

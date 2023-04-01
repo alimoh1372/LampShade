@@ -13,7 +13,7 @@ namespace ShopManagement.Application.Contracts.ProductContracts
         OperationResult ExistsInStock(long id);
         OperationResult RunningOutInStock(long id);
 
-        List<ProductViewModel> Search(ProductSearchModel searchModel);
+        List<ProductViewModel> Search(ProductSearchModel searchModel=null);
 
         
     }

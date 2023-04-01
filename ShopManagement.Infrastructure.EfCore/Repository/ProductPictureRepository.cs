@@ -32,7 +32,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
 
         }
 
-        public List<ProductPictureViewModel> Search(PictureProductSearchModel searchModel = null)
+        public List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel = null)
         {
             var query = _context.ProductPictures.Include(x => x.Product)
                 .Select(x => new ProductPictureViewModel
@@ -42,13 +42,15 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     PictureAlt = x.PictureAlt,
                     PictureTitle = x.PictureTitle,
                     CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
+                    FkProductId=x.FkProductId,
+                    IsRemoved = x.IsRemoved,
                     Product = x.Product.Name
                 });
             if (searchModel==null)
                 return query.OrderByDescending(x => x.Id).ToList();
 
-            if (!string.IsNullOrWhiteSpace(searchModel.Product))
-                query = query.Where(x => x.Product == searchModel.Product);
+            if (searchModel.FkProductId !=0)
+                query = query.Where(x => x.FkProductId == searchModel.FkProductId);
             if (!string.IsNullOrWhiteSpace(searchModel.PictureAlt))
                 query = query.Where(x => x.PictureAlt == searchModel.PictureAlt);
             if (!string.IsNullOrWhiteSpace(searchModel.PictureTitle))

@@ -1,9 +1,10 @@
 ﻿namespace ShopManagement.Application.Contracts.ProductPictureContracts
 {
-    public class PictureProductSearchModel
+    public class ProductPictureSearchModel
     {
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
-        public string Product { get; set; }
+        public long FkProductId { get; set; }
+
     }
 }

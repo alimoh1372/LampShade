@@ -39,7 +39,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             }).FirstOrDefault(x=>x.Id==id);
         }
 
-        public List<ProductViewModel> Search(ProductSearchModel searchModel)
+        public List<ProductViewModel> Search(ProductSearchModel searchModel=null)
         {
             var query = _context.Products.Include(x => x.ProductCategory)
                 .Select(x => new ProductViewModel
@@ -55,6 +55,10 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     FkProductCategoryId = x.FkCategoryId
                     
                 });
+            if (searchModel==null)
+            {
+                return query.OrderByDescending(x => x.Id).ToList();
+            }
             if (!string.IsNullOrWhiteSpace(searchModel.Name))
                 query = query.Where(x => x.Name.Contains(searchModel.Name));
             if (!string.IsNullOrWhiteSpace(searchModel.Code))
