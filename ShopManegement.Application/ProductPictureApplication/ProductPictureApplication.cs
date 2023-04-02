@@ -3,7 +3,7 @@ using _0_Framework.Application;
 using ShopManagement.Application.Contracts.ProductPictureContracts;
 using SM.Domain.ProductPictureAgg;
 
-namespace ShopManagement.Application
+namespace ShopManagement.Application.ProductPictureApplication
 {
     public class ProductPictureApplication : IProductPictureApplication
     {

@@ -6,6 +6,7 @@ using ShopManagement.Application.Contracts.ProductContracts;
 using ShopManagement.Application.Contracts.ProductPictureContracts;
 using ShopManagement.Application.ProductApplication;
 using ShopManagement.Application.ProductCategoryApplication;
+using ShopManagement.Application.ProductPictureApplication;
 using ShopManagement.Infrastructure.EfCore;
 using ShopManagement.Infrastructure.EfCore.Repository;
 using SM.Domain.ProductAgg;
