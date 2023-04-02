@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Application.Contracts.ProductPictureContracts
+﻿namespace ShopManagement.Application.Contracts.SlideContracts
 {
     public class ProductPictureSearchModel
     {

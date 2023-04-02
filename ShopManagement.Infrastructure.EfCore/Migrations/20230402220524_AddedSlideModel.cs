@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShopManagement.Infrastructure.EfCore.Migrations
 {
-    public partial class SlideModelAdded : Migration
+    public partial class AddedSlideModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Picture = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Picture = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     PictureAlt = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     PictureTitle = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Heading = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contracts.ProductCategoryContracts;
 using ShopManagement.Application.Contracts.ProductContracts;
-using ShopManagement.Application.Contracts.ProductPictureContracts;
+using ShopManagement.Application.Contracts.SlideContracts;
 
 namespace ServiceHosts.Areas.Administration.Pages.Shop.ProductPicture
 {

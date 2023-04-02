@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using _0_Framework.Domain;
-using ShopManagement.Application.Contracts.ProductPictureContracts;
+using ShopManagement.Application.Contracts.SlideContracts;
 
 namespace SM.Domain.ProductPictureAgg
 {

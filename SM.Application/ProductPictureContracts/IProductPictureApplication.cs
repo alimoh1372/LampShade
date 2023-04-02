@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using _0_Framework.Application;
 
-namespace ShopManagement.Application.Contracts.ProductPictureContracts
+namespace ShopManagement.Application.Contracts.SlideContracts
 {
     public interface IProductPictureApplication
     {

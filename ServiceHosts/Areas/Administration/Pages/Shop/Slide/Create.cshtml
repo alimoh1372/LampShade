@@ -1,14 +1,13 @@
-﻿@model ShopManagement.Application.Contracts.SlideContracts.EditProductPicture
+﻿@model ShopManagement.Application.Contracts.SlideContracts.CreateSlide
 @{
-    ViewData["Title"] = $"ویرایش عکس محصول:{Model.PictureAlt}";
 }
 
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h4 class="modal-title">ویرایش عکس محصول:@Model.PictureAlt</h4>
+    <h4 class="modal-title">ایجاد اسلاید</h4>
 </div>
 
-<form asp-page="./Index" asp-page-handler="Edit"
+<form asp-page="./Index" asp-page-handler="Create"
       method="post"
       data-ajax="true"
       data-callback=""
@@ -42,25 +41,43 @@
                 </div>
             </div>
         </div>
-
-
-
-
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <label asp-for="FkProductId" class="control-label"></label>
-                    <select class="form-control" asp-for="FkProductId" asp-items='new SelectList(Model.Products, "Id", "Name")'>
-                        <option value="0">انتخاب گروه محصول...</option>
-                    </select>
-                    <span asp-validation-for="FkProductId" class="error"></span>
+                    <label asp-for="Heading" class="control-label"></label>
+                    <input type="text" class="form-control" asp-for="Heading">
+                    <span asp-validation-for="Heading" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input type="text" class="form-control" asp-for="Title">
+                    <span asp-validation-for="Title" class="error"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label asp-for="BtnText" class="control-label"></label>
+                    <input type="text" class="form-control" asp-for="BtnText">
+                    <span asp-validation-for="BtnText" class="error"></span>
                 </div>
             </div>
         </div>
-        <input asp-for="Id" value="@Model.Id"/>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group no-margin">
+                    <label asp-for="Text" class="control-label"></label>
+                    <textarea class="form-control autogrow" asp-for="Text"
+                              style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">
+                    </textarea>
+                    <span asp-validation-for="Text" class="error"></span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
-        <button type="submit" class="btn btn-info waves-effect waves-light">ثبت ویرایش</button>
+        <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
     </div>
 </form>

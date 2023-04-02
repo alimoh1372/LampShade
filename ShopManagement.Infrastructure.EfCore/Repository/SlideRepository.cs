@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -10,9 +11,9 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
     public class SlideRepository:BaseRepository<long,Slide>,ISlideRepository
     {
         private readonly ShopContext _context;
-        public SlideRepository(DbContext context, ShopContext context1) : base(context)
+        public SlideRepository(ShopContext context) : base(context)
         {
-            _context = context1;
+            _context = context;
         }
 
 
@@ -24,11 +25,13 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 Picture = x.Picture,
                 Heading = x.Heading,
                 Title = x.Title,
-                Text = x.Text
+                Text = x.Text,
+                CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
+                IsRemoved=x.IsRemoved
             });
             if (searchModel==null)
             {
-                query.OrderByDescending(x => x.Id).ToList();
+               return query.OrderByDescending(x => x.Id).ToList();
             }
 
             if (!string.IsNullOrWhiteSpace(searchModel.Text))

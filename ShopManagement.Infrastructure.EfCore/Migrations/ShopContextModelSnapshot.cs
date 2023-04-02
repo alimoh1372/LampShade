@@ -205,8 +205,8 @@ namespace ShopManagement.Infrastructure.EfCore.Migrations
 
                     b.Property<string>("Picture")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("PictureAlt")
                         .IsRequired()
