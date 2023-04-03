@@ -27,6 +27,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 Title = x.Title,
                 Text = x.Text,
                 CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
+                Link=x.Link,
                 IsRemoved=x.IsRemoved
             });
             if (searchModel==null)

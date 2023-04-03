@@ -6,7 +6,7 @@ namespace ShopManagement.Application.Contracts.SlideContracts
 {
     public class CreateSlide        
     {
-        [DisplayName("تصویر محصول")]
+        [DisplayName("تصویر")]
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(1000, ErrorMessage = ValidatingMessage.MaxLength)]
         public string Picture { get;  set; }
@@ -36,6 +36,10 @@ namespace ShopManagement.Application.Contracts.SlideContracts
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(50, ErrorMessage = ValidatingMessage.MaxLength)]
         public string BtnText { get;  set; }
+        [DisplayName("لینک")]
+        [Required(ErrorMessage = ValidatingMessage.IsRequired)]
+        [StringLength(1000, ErrorMessage = ValidatingMessage.MaxLength)]
+        public string Link { get; set; }
 
     }
 }
