@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using _01_LampshadeQuery.Contracts;
+using _01_LampshadeQuery.Contracts.Slide;
 using ShopManagement.Application.Contracts.SlideContracts;
 using ShopManagement.Infrastructure.EfCore;
 
