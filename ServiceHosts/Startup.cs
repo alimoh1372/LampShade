@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DiscountManagement.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using ShopManagement.Configuration;
 using ShopManagement.Infrastructure.EfCore;
@@ -30,7 +31,7 @@ namespace ServiceHosts
             
             
             ShopManagementBootstrapper.Configure(services,connectionString);
-           
+            DiscountManagementBootstrapper.Configure(services,connectionString);
             services.AddRazorPages();
         }
 
