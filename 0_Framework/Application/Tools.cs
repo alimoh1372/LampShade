@@ -56,6 +56,7 @@ namespace _0_Framework.Application
 
         public static string ToEnglishNumber(this string strNum)
         {
+
             var cash = strNum;
             for (var i = 0; i < 10; i++)
                 cash = cash.Replace(Pn[i], En[i]);
@@ -94,11 +95,14 @@ namespace _0_Framework.Application
 
         public static DateTime ToGeorgianDateTime(this string persianDate)
         {
-            persianDate = persianDate.ToEnglishNumber();
-            var year = Convert.ToInt32(persianDate.Substring(0, 4));
-            var month = Convert.ToInt32(persianDate.Substring(5, 2));
-            var day = Convert.ToInt32(persianDate.Substring(8, 2));
-            return new DateTime(year, month, day, new PersianCalendar());
+            if (persianDate!=null)
+            {
+                persianDate = persianDate.ToEnglishNumber();
+                var year = Convert.ToInt32(persianDate.Substring(0, 4));
+                var month = Convert.ToInt32(persianDate.Substring(5, 2));
+                var day = Convert.ToInt32(persianDate.Substring(8, 2));
+                return new DateTime(year, month, day, new PersianCalendar());
+            }
         }
 
         public static string ToMoney(this double myMoney)

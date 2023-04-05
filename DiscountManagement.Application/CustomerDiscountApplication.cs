@@ -1,29 +1,67 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using _0_Framework.Application;
 using DiscountManagement.Application.Contracts.CustomerDiscountContracts;
+using DiscountManagement.Domain.CustomerDiscountAgg;
 
 namespace DiscountManagement.Application
 {
     public class CustomerDiscountApplication:ICustomerDiscountApplication
     {
+        private readonly ICustomerDiscountRepository _customerDiscountRepository;
+
+        public CustomerDiscountApplication(ICustomerDiscountRepository customerDiscountRepository)
+        {
+            _customerDiscountRepository = customerDiscountRepository;
+        }
+
         public OperationResult Define(DefineCustomerDiscount command)
         {
-            throw new System.NotImplementedException();
+            OperationResult result = new OperationResult();
+            CustomerDiscount discount;
+            DateTime startDate = command.StartDate.ToGeorgianDateTime();
+            DateTime endDate = command.EndDate.ToGeorgianDateTime();
+            if (_customerDiscountRepository.IsExists(x=>x.Reason==command.Reason && x.StartDate ==startDate && x.EndDate == endDate ))
+            {
+                result.Failed(ApplicationMessage.Duplication);
+            }
+
+            discount = new CustomerDiscount(command.FkProductId, command.Reason, startDate, endDate);
+            _customerDiscountRepository.SaveChanges();
+          return  result.Succedded();
         }
 
         public OperationResult Edit(EditCustomerDiscount command)
         {
-            throw new System.NotImplementedException();
+
+            OperationResult result = new OperationResult();
+            CustomerDiscount discount;
+            DateTime startDate = command.StartDate.ToGeorgianDateTime();
+            DateTime endDate = command.EndDate.ToGeorgianDateTime();
+            if (_customerDiscountRepository.IsExists(x => x.Reason == command.Reason &&
+                                                          x.StartDate == startDate && x.EndDate == endDate && x.Id != command.Id))
+            {
+              return  result.Failed(ApplicationMessage.Duplication);
+            }
+
+            discount = _customerDiscountRepository.Get(command.Id);
+            if (discount ==null)
+            {
+                return result.Failed(ApplicationMessage.NotFound);
+            }
+            discount.Edit(command.FkProductId, command.Reason, startDate, endDate);
+            _customerDiscountRepository.SaveChanges();
+            return result.Succedded();
         }
 
         public EditCustomerDiscount GetDetails(long id)
         {
-            throw new System.NotImplementedException();
+            return _customerDiscountRepository.GetDetails(id);
         }
 
-        public List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel)
+        public List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel=null)
         {
-            throw new System.NotImplementedException();
+          return  _customerDiscountRepository.Search(searchModel);
         }
     }
 }
