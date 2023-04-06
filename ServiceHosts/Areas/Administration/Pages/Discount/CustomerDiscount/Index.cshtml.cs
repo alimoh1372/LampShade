@@ -25,7 +25,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Discount.CustomerDiscount
             _customerDiscountApplication = customerDiscountApplication;
         }
 
-        public void OnGet(CustomerDiscountSearchModel searchModel)
+        public void OnGet(CustomerDiscountSearchModel searchModel=null)
         {
             var product = _productApplication.Search();
             ProductItems = new SelectList(product, "Id", "Name");

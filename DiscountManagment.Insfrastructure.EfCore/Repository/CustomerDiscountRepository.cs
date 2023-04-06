@@ -34,39 +34,46 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
 
         public List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel=null)
         {
-            var products = _productRepository.Get().Select(x => new { x.Id, x.Name });
+            var products = _productRepository.Get().Select(x => new { x.Id, x.Name }).ToList();
             var query = _context.CustomerDiscounts.Select(x => new CustomerDiscountViewModel
             {
                 Id = x.Id,
                 Reason = x.Reason,
                 StartDate = x.StartDate.ToFarsi(),
-                EndDate = x.StartDate.ToFarsi(),
-                FkProductId = x.FkProductId,
-                Product = products.FirstOrDefault(y=>y.Id ==x.FkProductId).Name
+                EndDate = x.EndDate.ToFarsi(),
+                FkProductId = x.FkProductId
             });
             if (searchModel==null)
             {
                 return query.OrderByDescending(x => x.Id).ToList();
             }
 
-            if (searchModel.FkProductId!=0)
+            if (searchModel.FkProductId.HasValue && searchModel.FkProductId!=0)
             {
                 query = query.Where(x => x.FkProductId == searchModel.FkProductId);
             }
 
-            if (string.IsNullOrWhiteSpace( searchModel.StartDate))
+            if (!string.IsNullOrWhiteSpace( searchModel.StartDate))
             {
                 query = query.Where(x => x.StartDate.ToGeorgianDateTime() >= searchModel.StartDate.ToGeorgianDateTime());
             }
-            if (string.IsNullOrWhiteSpace(searchModel.EndDate))
+            if (!string.IsNullOrWhiteSpace(searchModel.EndDate))
             {
                 query = query.Where(x => x.EndDate.ToGeorgianDateTime() <= searchModel.EndDate.ToGeorgianDateTime());
             }
-            if (string.IsNullOrWhiteSpace(searchModel.Reason))
+            if (!string.IsNullOrWhiteSpace(searchModel.Reason))
             {
                 query = query.Where(x => x.Reason.Contains(searchModel.Reason));
             }
-            return query.OrderByDescending(x => x.Id).ToList();
+
+            var list = query.OrderByDescending(x => x.Id).ToList();
+         
+            foreach (CustomerDiscountViewModel item in list)
+            {
+                item.Product = products.FirstOrDefault(x => x.Id == item.FkProductId).Name;
+            }
+
+            return list;
         }
     }
 }

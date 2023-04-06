@@ -26,8 +26,10 @@ namespace DiscountManagement.Application
                 result.Failed(ApplicationMessage.Duplication);
             }
 
+
             discount = new CustomerDiscount(command.FkProductId, command.Reason, startDate, endDate);
-            _customerDiscountRepository.SaveChanges();
+            _customerDiscountRepository.Create(discount);
+         _customerDiscountRepository.SaveChanges();
           return  result.Succedded();
         }
 

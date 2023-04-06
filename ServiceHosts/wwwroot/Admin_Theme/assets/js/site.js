@@ -35,6 +35,11 @@ $(document).ready(function () {
     $("#MainModal").on("shown.bs.modal",
         function () {
             window.location.hash = "##";
+            $('.persianDateInput').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true,
+                initialValueType: "persian"
+            });
         });
 
     $(document).on("submit",
