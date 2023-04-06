@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label asp-for="FkProductId" class="control-label"></label>
                     <select class="form-control" asp-for="FkProductId" asp-items='new SelectList(Model.Products,"Id","Name")'>
-                        <option value="0">انتخاب گروه محصول...</option>
+                        <option value="0">انتخاب محصول...</option>
                     </select>
                     <span asp-validation-for="FkProductId" class="error"></span>
                 </div>

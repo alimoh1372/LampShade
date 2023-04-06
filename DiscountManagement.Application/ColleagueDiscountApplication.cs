@@ -57,29 +57,40 @@ namespace DiscountManagement.Application
             ColleagueDiscount entity;
            
 
-            entity = _colleagueDiscountRepository.Get(command.Id);
+            entity = _colleagueDiscountRepository.Get(id);
             if (entity == null)
             {
                 return result.Failed(ApplicationMessage.NotFound);
             }
-            entity.Edit(command.FkProductId, command.DiscountRate);
+            entity.Active();
             _colleagueDiscountRepository.SaveChanges();
             return result.Succedded();
         }
 
         public OperationResult Remove(long id)
         {
-            throw new System.NotImplementedException();
+            OperationResult result = new OperationResult();
+            ColleagueDiscount entity;
+
+
+            entity = _colleagueDiscountRepository.Get(id);
+            if (entity == null)
+            {
+                return result.Failed(ApplicationMessage.NotFound);
+            }
+            entity.Remove();
+            _colleagueDiscountRepository.SaveChanges();
+            return result.Succedded();
         }
 
         public EditColleagueDiscount GetDetails(long id)
         {
-            throw new System.NotImplementedException();
+            return _colleagueDiscountRepository.GetDetails(id);
         }
 
-        public List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel searchModel)
+        public List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel searchModel=null)
         {
-            throw new System.NotImplementedException();
+            return _colleagueDiscountRepository.Search(searchModel);
         }
     }
 }

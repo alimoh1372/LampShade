@@ -64,6 +64,37 @@ namespace ServiceHosts.Areas.Administration.Pages.Discount.ColleagueDiscount
 
             return new JsonResult(result);
         }
-        
+
+        public IActionResult OnGetActive(long id)
+        {
+            OperationResult result = _colleagueDiscountApplication.Active(id);
+            if (result.IsSuccedded)
+            {
+                return RedirectToPage("./Index");
+            }
+            else
+            {
+                Message = result.Message;
+                return RedirectToPage("./Index");
+
+            }
+
+        }
+        public IActionResult OnGetRemove(long id)
+        {
+            OperationResult result = _colleagueDiscountApplication.Remove(id);
+            if (result.IsSuccedded)
+            {
+                return RedirectToPage("./Index");
+            }
+            else
+            {
+                Message = result.Message;
+                return RedirectToPage("./Index");
+
+            }
+
+        }
+
     }
 }
