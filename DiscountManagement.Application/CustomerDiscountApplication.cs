@@ -21,13 +21,13 @@ namespace DiscountManagement.Application
             CustomerDiscount discount;
             DateTime startDate = command.StartDate.ToGeorgianDateTime();
             DateTime endDate = command.EndDate.ToGeorgianDateTime();
-            if (_customerDiscountRepository.IsExists(x=>x.Reason==command.Reason && x.StartDate ==startDate && x.EndDate == endDate ))
+            if (_customerDiscountRepository.IsExists(x=>x.Reason==command.Reason && x.StartDate ==startDate && x.EndDate == endDate && x.DiscountRate == command.DiscountRate ))
             {
                 result.Failed(ApplicationMessage.Duplication);
             }
 
 
-            discount = new CustomerDiscount(command.FkProductId, command.Reason, startDate, endDate);
+            discount = new CustomerDiscount(command.FkProductId, command.Reason, startDate, endDate,command.DiscountRate);
             _customerDiscountRepository.Create(discount);
          _customerDiscountRepository.SaveChanges();
           return  result.Succedded();
@@ -41,7 +41,7 @@ namespace DiscountManagement.Application
             DateTime startDate = command.StartDate.ToGeorgianDateTime();
             DateTime endDate = command.EndDate.ToGeorgianDateTime();
             if (_customerDiscountRepository.IsExists(x => x.Reason == command.Reason &&
-                                                          x.StartDate == startDate && x.EndDate == endDate && x.Id != command.Id))
+                                                          x.StartDate == startDate && x.EndDate == endDate&& x.DiscountRate==command.DiscountRate && x.Id != command.Id))
             {
               return  result.Failed(ApplicationMessage.Duplication);
             }
@@ -51,7 +51,7 @@ namespace DiscountManagement.Application
             {
                 return result.Failed(ApplicationMessage.NotFound);
             }
-            discount.Edit(command.FkProductId, command.Reason, startDate, endDate);
+            discount.Edit(command.FkProductId, command.Reason, startDate, endDate,command.DiscountRate);
             _customerDiscountRepository.SaveChanges();
             return result.Succedded();
         }

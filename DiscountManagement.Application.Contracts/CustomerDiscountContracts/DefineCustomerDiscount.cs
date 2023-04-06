@@ -15,6 +15,9 @@ namespace DiscountManagement.Application.Contracts.CustomerDiscountContracts
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(500, ErrorMessage = ValidatingMessage.MaxLength)]
         public string Reason { get;  set; }
+        [DisplayName("درصد تخفیف")]
+        [Range(1, int.MaxValue)]
+        public int DiscountRate { get; set; }
         [DisplayName("تاریخ شروع")]
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(20, ErrorMessage = ValidatingMessage.MaxLength)]

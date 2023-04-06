@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="CustomerDiscountAgg\" />
+    <Folder Include="ColleagueDiscountAgg\" />
   </ItemGroup>
 
   <ItemGroup>

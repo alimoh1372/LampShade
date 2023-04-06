@@ -12,6 +12,7 @@ namespace DiscountManagement.Infrastructure.EfCore.Mapping
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.FkProductId).IsRequired();
+            builder.Property(x => x.DiscountRate).IsRequired();
             builder.Property(x => x.Reason).IsRequired().HasMaxLength(500);
             builder.Property(x => x.StartDate).IsRequired().HasMaxLength(20);
             builder.Property(x => x.EndDate).IsRequired().HasMaxLength(20);

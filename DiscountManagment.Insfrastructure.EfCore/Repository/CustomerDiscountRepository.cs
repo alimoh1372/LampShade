@@ -28,7 +28,9 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 Reason = x.Reason,
                 StartDate = x.StartDate.ToFarsi(),
                 EndDate = x.EndDate.ToFarsi(),
-                Id = x.Id
+                Id = x.Id,
+                DiscountRate = x.DiscountRate
+                
             }).FirstOrDefault();
         }
 
@@ -41,7 +43,8 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 Reason = x.Reason,
                 StartDate = x.StartDate.ToFarsi(),
                 EndDate = x.EndDate.ToFarsi(),
-                FkProductId = x.FkProductId
+                FkProductId = x.FkProductId,
+                DiscountRate=x.DiscountRate
             });
             if (searchModel==null)
             {
@@ -53,6 +56,10 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 query = query.Where(x => x.FkProductId == searchModel.FkProductId);
             }
 
+            if (searchModel.DiscountRate.HasValue && searchModel.DiscountRate != 0)
+            {
+                query = query.Where(x => x.DiscountRate == searchModel.DiscountRate);
+            }
             if (!string.IsNullOrWhiteSpace( searchModel.StartDate))
             {
                 query = query.Where(x => x.StartDate.ToGeorgianDateTime() >= searchModel.StartDate.ToGeorgianDateTime());
@@ -65,6 +72,7 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
             {
                 query = query.Where(x => x.Reason.Contains(searchModel.Reason));
             }
+           
 
             var list = query.OrderByDescending(x => x.Id).ToList();
          

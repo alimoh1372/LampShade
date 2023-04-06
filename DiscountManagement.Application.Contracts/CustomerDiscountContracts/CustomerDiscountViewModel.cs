@@ -8,5 +8,6 @@
         public string EndDate { get; set; }
         public long FkProductId { get; set; }
         public string Product { get; set; }
+        public int DiscountRate { get; set; }
     }
 }
