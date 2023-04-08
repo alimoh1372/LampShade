@@ -84,11 +84,11 @@
                                         <td>
                                             @if (item.IsActive)
                                             {
-                                                <i class="fa fa-3x fa-check-circle"></i>
+                                                <i class="fa fa-3x text-success fa-check-circle"></i>
                                             }
                                             else
                                             {
-                                                <i class="fa fa-3x fa-remove"></i>
+                                                <i class="fa fa-3x text-danger fa-remove"></i>
                                             }
                                         </td>
                                         <td>@item.Product</td>
@@ -101,14 +101,14 @@
                                             @if (item.IsActive)
                                             {
                                                 <a class="btn btn-danger btn-custom waves-effect waves-light m-b-5"
-                                                   href="#showmodal=@Url.Page("./Index","Remove",new {id=item.Id})">
+                                                   asp-page="./Index" asp-page-handler="Remove" asp-route-Id="@item.Id">
                                                     <i class="fa fa-remove"> </i> غیرفعال سازی
                                                 </a>
                                             }
                                             else
                                             {
                                                 <a class="btn btn-success btn-custom waves-effect waves-light m-b-5"
-                                                   href="#showmodal=@Url.Page("./Index","Remove",new {id=item.Id})">
+                                                   asp-page="./Index" asp-page-handler="Active" asp-route-Id="@item.Id">
                                                     <i class="fa fa-check"> </i>فعال سازی
                                                 </a>
                                             }

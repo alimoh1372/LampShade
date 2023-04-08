@@ -36,7 +36,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Discount.ColleagueDiscount
         public IActionResult OnGetCreate()
         {
 
-            DefineCustomerDiscount model = new DefineCustomerDiscount
+            DefineColleagueDiscount model = new DefineColleagueDiscount
             {
                 Products = _productApplication.Search()
             };

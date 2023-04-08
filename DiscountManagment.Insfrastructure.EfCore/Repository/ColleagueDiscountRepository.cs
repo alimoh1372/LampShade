@@ -26,11 +26,12 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
             return _context.ColleagueDiscounts.Select(x => new EditColleagueDiscount
             {
                 FkProductId = x.FkProductId,
-                Id = x.Id
+                Id = x.Id,
+                DiscountRate = x.DiscountRate
             }).FirstOrDefault(x => x.Id==id);
         }
 
-        public List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel searchModel = null)
+        public List<ColleagueDiscountViewModel> Search(ColleagueDiscountSearchModel searchModel )
         {
             var products = _productRepository.Get().Select(x => new
             {
@@ -45,10 +46,6 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 DiscountRate=x.DiscountRate,
                 IsActive=x.IsActive
             });
-            if (searchModel==null)
-            {
-                return query.OrderByDescending(x => x.Id).ToList();
-            }
 
             if (searchModel.DiscountRate.HasValue && searchModel.DiscountRate != 0)
             {
@@ -58,12 +55,12 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
             {
                 query = query.Where(x => x.FkProductId == searchModel.FkProductId);
             }
-            var list = query.OrderByDescending(x => x.Id).ToList();
+            var list = query.ToList();
             foreach (ColleagueDiscountViewModel item in list)
             {
                 item.Product = products.FirstOrDefault(y => y.Id == item.FkProductId).Name;
             }
-            return query.ToList();
+            return list.OrderByDescending(x=>x.Id).ToList();
         }
     }
 }

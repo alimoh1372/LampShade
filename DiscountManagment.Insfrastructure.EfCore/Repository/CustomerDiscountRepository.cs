@@ -30,8 +30,8 @@ namespace DiscountManagement.Infrastructure.EfCore.Repository
                 EndDate = x.EndDate.ToFarsi(),
                 Id = x.Id,
                 DiscountRate = x.DiscountRate
-                
-            }).FirstOrDefault();
+
+            }).FirstOrDefault(x=>x.Id==id);
         }
 
         public List<CustomerDiscountViewModel> Search(CustomerDiscountSearchModel searchModel=null)

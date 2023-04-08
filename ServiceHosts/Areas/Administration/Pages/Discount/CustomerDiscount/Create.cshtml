@@ -18,8 +18,17 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label asp-for="Reason" class="control-label"></label>
-                    <input type="text" class="form-control" asp-for="Reason" >
+                    <input type="text" class="form-control" asp-for="Reason">
                     <span asp-validation-for="Reason" class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label asp-for="DiscountRate" class="control-label"></label>
+                    <input type="text" class="form-control" asp-for="DiscountRate">
+                    <span asp-validation-for="DiscountRate" class="error"></span>
                 </div>
             </div>
         </div>
@@ -58,3 +67,6 @@
         <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
     </div>
 </form>
+
+
+
