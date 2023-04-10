@@ -24,7 +24,7 @@ namespace InventoryManagement.Domain.InventoryAgg
             UnitPrice = unitPrice;
         }
 
-        private long CalculateCurrentCount()
+        public long CalculateCurrentCount()
         {
             var plus = InventoryOperations.Where(x => x.Operation).Sum(x => x.Count);
             var minus = InventoryOperations.Where(x => !x.Operation).Sum(x => x.Count);

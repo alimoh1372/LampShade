@@ -30,7 +30,6 @@ namespace SM.Domain.ProductAgg
         {
             Name = name;
             Code = code;
-            UnitPrice = unitPrice;
             ShortDescription = shortDescription;
             Description = description;
             Picture = picture;
@@ -40,14 +39,12 @@ namespace SM.Domain.ProductAgg
             Keywords = keywords;
             MetaDescription = metaDescription;
             FkCategoryId = fkCategoryId;
-            IsInStock = true;
         }
 
         public void Edit(string name, string code, double unitPrice, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long fkCategoryId)
         {
             Name = name;
             Code = code;
-            UnitPrice = unitPrice;
             ShortDescription = shortDescription;
             Description = description;
             Picture = picture;
@@ -61,11 +58,11 @@ namespace SM.Domain.ProductAgg
 
         public void ExistInStock()
         {
-            IsInStock = true;
+            //IsInStock = true;
         }
         public void RunningOutInStock()
         {
-            IsInStock = false;
+            //IsInStock = false;
         }
     }
 }

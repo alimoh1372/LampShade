@@ -24,7 +24,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             {
                 Name = x.Name,
                 Code = x.Code,
-                UnitPrice = x.UnitPrice,
+                //UnitPrice = x.UnitPrice,
                 ShortDescription = x.ShortDescription,
                 Description = x.Description,
                 Picture = x.Picture,
@@ -47,9 +47,9 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     Id = x.Id,
                     Picture = x.Picture,
                     Name = x.Name,
-                    IsInStock = x.IsInStock,
+                    //IsInStock = x.IsInStock,
                     Code = x.Code,
-                    UnitPrice = x.UnitPrice,
+                    //UnitPrice = x.UnitPrice,
                     ProductCategory =x.ProductCategory.Name,
                     CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
                     FkProductCategoryId = x.FkCategoryId

@@ -7,6 +7,6 @@
         public string Product { get; set; }
         public bool IsInStock { get; set; }
         public long CurrentCount { get; set; }
-
+        public long FkProductId { get; set; }
     }
 }
