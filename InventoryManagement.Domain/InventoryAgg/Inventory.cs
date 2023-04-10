@@ -31,7 +31,7 @@ namespace InventoryManagement.Domain.InventoryAgg
             return plus - minus;
         }
 
-        public void IncreaseInventory(long count, long fkOperatorId, string description)
+        public void Increase(long count, long fkOperatorId, string description)
         {
             long currentCount = CalculateCurrentCount() + count;
             InventoryOperation inventoryOperation =
