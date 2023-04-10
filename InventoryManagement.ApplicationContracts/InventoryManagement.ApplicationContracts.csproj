@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="InventoryContracts\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
   </ItemGroup>
 

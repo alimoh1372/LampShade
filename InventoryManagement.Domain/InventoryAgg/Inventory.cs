@@ -18,6 +18,11 @@ namespace InventoryManagement.Domain.InventoryAgg
             UnitPrice = unitPrice;
             IsInStock = false;
         }
+        public void Edit(long fkProductId, double unitPrice)
+        {
+            FkProductId = fkProductId;
+            UnitPrice = unitPrice;
+        }
 
         private long CalculateCurrentCount()
         {

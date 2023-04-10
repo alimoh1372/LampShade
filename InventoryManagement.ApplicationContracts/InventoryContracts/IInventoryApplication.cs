@@ -14,30 +14,4 @@ namespace InventoryManagement.ApplicationContracts.InventoryContracts
         List<InventoryViewModel> Search(InventorySearchModel searchModel);
 
     }
-
-    public class InventorySearchModel   
-    {
-    }
-
-    public class InventoryViewModel
-
-    {
-    }
-
-    public class ReduceInventory
-    {
-    }
-
-    public class IncreaseInventory
-    {
-    }
-
-    public class EditInventory
-
-    {
-    }
-
-    public class CreateInventory
-    {
-    }
 }
