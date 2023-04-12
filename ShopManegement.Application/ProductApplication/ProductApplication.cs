@@ -25,7 +25,7 @@ namespace ShopManagement.Application.ProductApplication
             }
 
             string slug = command.Slug.Slugify();
-            Product product = new Product(command.Name, command.Code, command.UnitPrice, command.ShortDescription,
+            Product product = new Product(command.Name, command.Code, command.ShortDescription,
                 command.ShortDescription,
                 command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords,
                 command.MetaDescription, command.FkCategoryId);
@@ -54,7 +54,7 @@ namespace ShopManagement.Application.ProductApplication
 
 
             string slug = command.Slug.Slugify();
-            product.Edit(command.Name, command.Code, command.UnitPrice, command.ShortDescription,
+            product.Edit(command.Name, command.Code, command.ShortDescription,
                 command.ShortDescription,
                 command.Picture, command.PictureAlt, command.PictureTitle, slug, command.Keywords,
                 command.MetaDescription, command.FkCategoryId);
@@ -76,32 +76,7 @@ namespace ShopManagement.Application.ProductApplication
             return _productRepository.Search(searchModel);
         }
 
-        public OperationResult ExistsInStock(long id)
-        {
-            OperationResult result = new OperationResult();
-            Product product = _productRepository.Get(id);
-            if (product == null)
-            {
-                result.Failed(ApplicationMessage.NotFound);
-                return result;
-            }
-            product.ExistInStock();
-            _productRepository.SaveChanges();
-            return result.Succedded();
-        }
-
-        public OperationResult RunningOutInStock(long id)
-        {
-            OperationResult result = new OperationResult();
-            Product product = _productRepository.Get(id);
-            if (product == null)
-            {
-                result.Failed(ApplicationMessage.NotFound);
-                return result;
-            }
-            product.RunningOutInStock();
-            _productRepository.SaveChanges();
-            return result.Succedded();
-        }
+       
+     
     }
 }

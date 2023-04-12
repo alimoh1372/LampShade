@@ -5,11 +5,11 @@ namespace InventoryManagement.ApplicationContracts.InventoryContracts
 {
     public interface IInventoryApplication
     {
-        OperationResult CreateInventory(CreateInventory command);
-        OperationResult EditInventory(EditInventory command);
-        OperationResult IncreaseInventory(IncreaseInventory command);
+        OperationResult Create(CreateInventory command);
+        OperationResult Edit(EditInventory command);
+        OperationResult Increase(IncreaseInventory command);
         OperationResult ReduceInventories(List<ReduceInventory> command);
-        OperationResult ReduceInventory(ReduceInventory command);
+        OperationResult Reduce(ReduceInventory command);
         EditInventory GetDetails(long id);
         List<InventoryViewModel> Search(InventorySearchModel searchModel);
 

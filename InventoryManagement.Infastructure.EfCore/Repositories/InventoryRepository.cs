@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using InventoryManagement.ApplicationContracts.InventoryContracts;
 using InventoryManagement.Domain.InventoryAgg;
@@ -37,7 +39,8 @@ namespace InventoryManagement.Infrastructure.EfCore.Repositories
                 UnitPrice = x.UnitPrice,
                 IsInStock = x.IsInStock,
                 FkProductId=x.FkProductId,
-                CurrentCount = x.CalculateCurrentCount()
+                CurrentCount = x.CalculateCurrentCount(),
+                CreationDate=x.CreationDate.ToFarsi()
             });
 
             if (searchModel.FkProductId>0)
@@ -50,7 +53,10 @@ namespace InventoryManagement.Infrastructure.EfCore.Repositories
                 query = query.Where(x => x.UnitPrice == searchModel.UnitPrice);
             }
 
-            query = query.Where(x => x.IsInStock == searchModel.IsInStock);
+            if (searchModel.NotInStock ^ searchModel.IsInStock )
+            {
+                query = searchModel.IsInStock ? query.Where(x => x.IsInStock == true) : query.Where(x => x.IsInStock == false);
+            }
             var inventory = query.OrderByDescending(x => x.Id).ToList();
             var products = _productRepository.Get().Select(x => new { x.Id, x.Name }).ToList();
             inventory.ForEach(item =>
@@ -64,7 +70,7 @@ namespace InventoryManagement.Infrastructure.EfCore.Repositories
 
         public Inventory GetBy(long productId)
         {
-            throw new System.NotImplementedException();
+          return  _context.Inventory.FirstOrDefault(x => x.FkProductId == productId);
         }
     }
 }

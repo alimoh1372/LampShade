@@ -10,9 +10,7 @@ namespace ShopManagement.Application.Contracts.ProductContracts
         OperationResult Edit(EditProduct command);
 
         EditProduct GetDetails(long id);
-        OperationResult ExistsInStock(long id);
-        OperationResult RunningOutInStock(long id);
-
+       
         List<ProductViewModel> Search(ProductSearchModel searchModel=null);
 
         

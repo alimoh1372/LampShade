@@ -8,5 +8,6 @@
         public bool IsInStock { get; set; }
         public long CurrentCount { get; set; }
         public long FkProductId { get; set; }
+        public string CreationDate { get; set; }
     }
 }

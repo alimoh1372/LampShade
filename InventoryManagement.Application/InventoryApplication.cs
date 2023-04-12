@@ -15,7 +15,7 @@ namespace InventoryManagement.Application
             _inventoryRepository = inventoryRepository;
         }
 
-        public OperationResult CreateInventory(CreateInventory command)
+        public OperationResult Create(CreateInventory command)
         {
             OperationResult result = new OperationResult();
             if (_inventoryRepository.IsExists(x => x.FkProductId == command.FkProductId))
@@ -28,7 +28,7 @@ namespace InventoryManagement.Application
             return result.Succedded();
         }
 
-        public OperationResult EditInventory(EditInventory command)
+        public OperationResult Edit(EditInventory command)
         {
             OperationResult result = new OperationResult();
             if (_inventoryRepository.IsExists(x => x.FkProductId == command.FkProductId && x.Id != command.Id))
@@ -47,7 +47,7 @@ namespace InventoryManagement.Application
             return result.Succedded();
         }
 
-        public OperationResult IncreaseInventory(IncreaseInventory command)
+        public OperationResult Increase(IncreaseInventory command)
         {
             OperationResult result = new OperationResult();
             Inventory inventory = _inventoryRepository.Get(command.InventoryId);
@@ -81,7 +81,7 @@ namespace InventoryManagement.Application
             return result.Succedded();
         }
 
-        public OperationResult ReduceInventory(ReduceInventory command)
+        public OperationResult Reduce(ReduceInventory command)
         {
             OperationResult result = new OperationResult();
             Inventory inventory = _inventoryRepository.GetBy(command.FkProductId);

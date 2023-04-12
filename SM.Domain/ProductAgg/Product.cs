@@ -26,7 +26,7 @@ namespace SM.Domain.ProductAgg
 
         public ICollection<ProductPicture> ProductPictures { get; private set; }
 
-        public Product(string name, string code, double unitPrice, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long fkCategoryId)
+        public Product(string name, string code, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long fkCategoryId)
         {
             Name = name;
             Code = code;
@@ -41,7 +41,7 @@ namespace SM.Domain.ProductAgg
             FkCategoryId = fkCategoryId;
         }
 
-        public void Edit(string name, string code, double unitPrice, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long fkCategoryId)
+        public void Edit(string name, string code, string shortDescription, string description, string picture, string pictureAlt, string pictureTitle, string slug, string keywords, string metaDescription, long fkCategoryId)
         {
             Name = name;
             Code = code;
@@ -56,13 +56,6 @@ namespace SM.Domain.ProductAgg
             FkCategoryId = fkCategoryId;
         }
 
-        public void ExistInStock()
-        {
-            //IsInStock = true;
-        }
-        public void RunningOutInStock()
-        {
-            //IsInStock = false;
-        }
+
     }
 }
