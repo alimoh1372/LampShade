@@ -42,7 +42,6 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.Product
             {
                 Name = null,
                 Code = null,
-                UnitPrice = 0,
                 ShortDescription = null,
                 Description = null,
                 Picture = null,

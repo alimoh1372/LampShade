@@ -63,7 +63,41 @@ namespace ServiceHosts.Areas.Administration.Pages.Inventory
 
             return new JsonResult(result);
         }
+        public IActionResult OnGetIncrease(long id)
+        {
+            IncreaseInventory increaseModel = new IncreaseInventory{InventoryId = id};
+          
+            return Partial("Increase", increaseModel);
+        }
+        public JsonResult OnPostIncrease(IncreaseInventory command)
+        {
+            OperationResult result = _inventoryApplication.Increase(command);
+            if (!result.IsSuccedded)
+            {
+                Message = ApplicationMessage.OperationFailed;
+            }
+            return new JsonResult(result);
+        }
+        public IActionResult OnGetReduce(long id)
+        {
+            ReduceInventory reduceInventory = new ReduceInventory { InventoryId = id };
 
+            return Partial("Reduce", reduceInventory);
+        }
+        public JsonResult OnPostReduce(ReduceInventory command)
+        {
+            OperationResult result = _inventoryApplication.Reduce(command);
+            if (!result.IsSuccedded)
+            {
+                Message = ApplicationMessage.OperationFailed;
+            }
+            return new JsonResult(result);
+        }
+        public IActionResult OnGetLog(long id)
+        {
+            var inventoryOperations = _inventoryApplication.GetInventoryOperations(id);
 
+            return Partial("InventoryOperations", inventoryOperations);
+        }
     }
 }

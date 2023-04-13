@@ -72,5 +72,23 @@ namespace InventoryManagement.Infrastructure.EfCore.Repositories
         {
           return  _context.Inventory.FirstOrDefault(x => x.FkProductId == productId);
         }
+
+        public List<InventoryOperationsViewModel> GetInventoryOperations(long inventoryId)
+        {
+            Inventory inventory = Get(inventoryId);
+           return inventory.InventoryOperations.Select(x => new InventoryOperationsViewModel
+            {
+                Id = x.Id,
+                Operation = x.Operation,
+                Count = x.Count,
+                FkOperatorId = x.FkOperatorId,
+                Operator = "مدیر سیستم",
+                OperationDate = x.OperationDate.ToFarsi(),
+                CurrentCount = x.CurrentCount,
+                Description = x.Description,
+                OrderId = x.OrderId
+            }).OrderByDescending(x => x.Id).ToList();
+           
+        }
     }
 }

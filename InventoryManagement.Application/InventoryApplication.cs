@@ -24,6 +24,7 @@ namespace InventoryManagement.Application
             }
 
             Inventory inventory = new Inventory(command.FkProductId, command.UnitPrice);
+            _inventoryRepository.Create(inventory);
             _inventoryRepository.SaveChanges();
             return result.Succedded();
         }
@@ -84,7 +85,7 @@ namespace InventoryManagement.Application
         public OperationResult Reduce(ReduceInventory command)
         {
             OperationResult result = new OperationResult();
-            Inventory inventory = _inventoryRepository.GetBy(command.FkProductId);
+            Inventory inventory = _inventoryRepository.Get(command.InventoryId);
             if (inventory == null)
             {
                 return result.Failed(ApplicationMessage.NotFound);
@@ -104,6 +105,11 @@ namespace InventoryManagement.Application
         public List<InventoryViewModel> Search(InventorySearchModel searchModel)
         {
             return _inventoryRepository.Search(searchModel);
+        }
+
+        public List<InventoryOperationsViewModel> GetInventoryOperations(long inventoryId)
+        {
+            return _inventoryRepository.GetInventoryOperations(inventoryId);
         }
     }
 }

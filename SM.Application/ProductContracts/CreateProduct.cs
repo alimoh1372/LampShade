@@ -17,14 +17,7 @@ namespace ShopManagement.Application.Contracts.ProductContracts
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(15, ErrorMessage = ValidatingMessage.MaxLength)]
         public string Code { get;  set; }
-
-        [DisplayName("قیمت واحد")]
-        [Range(1, 100000, ErrorMessage = ValidatingMessage.IsRequired)]
-       
-        public double UnitPrice { get;  set; }
-
-
-
+        
         [DisplayName("توضیحات کوتاه")]
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(500, ErrorMessage = ValidatingMessage.MaxLength)]

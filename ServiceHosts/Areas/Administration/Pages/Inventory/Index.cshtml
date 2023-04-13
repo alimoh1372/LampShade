@@ -56,17 +56,17 @@
                             </div>
                         </div>*@
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.IsInStock"></label>
+                        <label class="sr-only" asp-for="SearchModel.IsInStock">موجودها</label>
                         <div class="form-control">
                             <div class="control-label">
                                 <div class="toggle toggle-primary toggle_IsInStock">
                                 </div>
-                                <input class="toggle_IsInStock invisible" type="checkbox"  asp-for="SearchModel.IsInStock" />
+                                <input class="toggle_IsInStock invisible" type="checkbox" asp-for="SearchModel.IsInStock" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.NotInStock"></label>
+                        <label class="sr-only" asp-for="SearchModel.NotInStock">ناموجودها</label>
                         <div class="form-control">
                             <div class="control-label">
                                 <div class="toggle toggle-primary toggle_NotInStock">
@@ -121,9 +121,22 @@
                                         <td>@item.CreationDate</td>
                                         <td>@item.CurrentCount</td>
                                         <td>
-                                            <a class="btn btn-warning btn-custom waves-effect waves-light m-b-5"
+                                            <a class="btn btn-warning  waves-effect waves-light m-b-5"
                                                href="#showmodal=@Url.Page("./Index","Edit",new {id=item.Id})">
                                                 <i class="fa fa-edit"> </i> ویرایش
+                                            </a>
+                                            <a class="btn btn-success  waves-effect waves-light m-b-5"
+                                               href="#showmodal=@Url.Page("./Index","Increase",new {id=item.Id})">
+                                                <i class="fa fa-plus-circle"> </i> افزایش موجودی
+                                            </a>
+                                            <a class="btn btn-danger  waves-effect waves-light m-b-5"
+                                               href="#showmodal=@Url.Page("./Index","Reduce",new {id=item.Id})">
+                                                <i class="fa fa-minus-circle"> </i> کاهش موجودی
+                                            </a>
+                                            <a class="btn btn-primary  waves-effect waves-light m-b-5"
+                                               href="#showmodal=@Url.Page("./Index","Log",new {id=item.Id})"
+                                               onclick="$('.modal-dialog').css('width','60%')">
+                                                <i class="fa fa-recycle"> </i> گردش انبار
                                             </a>
                                         </td>
                                     </tr>
@@ -153,7 +166,7 @@
                 //    on: 'ON', // text for the ON position
                 //    off: 'OFF' // and off
                 //},
-                on: true, // is the toggle ON on init
+                //on: true, // is the toggle ON on init
                 //animate: 250, // animation time (ms)
                 //easing: 'swing', // animation transition easing function
                 checkbox: $('.toggle_IsInStock') // the checkbox to toggle (for use in forms)
@@ -169,7 +182,7 @@
                 //    on: 'ON', // text for the ON position
                 //    off: 'OFF' // and off
                 //},
-                on: true, // is the toggle ON on init
+                /*on: true,*/ // is the toggle ON on init
                 //animate: 250, // animation time (ms)
                 //easing: 'swing', // animation transition easing function
                 checkbox: $('.toggle_NotInStock') // the checkbox to toggle (for use in forms)
