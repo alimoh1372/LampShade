@@ -76,9 +76,9 @@
                                     <th>#</th>
                                     <th>عکس</th>
                                     <th>نام</th>
-                                    <th>وضعیت درانبار</th>
+                                    @*<th>وضعیت درانبار</th>*@
                                     <th>کد محصول</th>
-                                    <th>قیمت محصول</th>
+                                    @*<th>قیمت محصول</th>*@
                                     <th>تاریخ تولید</th>
                                     <th>گروه محصول</th>
 
@@ -94,7 +94,7 @@
                                             <img src="@item.Picture" style="width: 70px; height: 70px" />
                                         </td>
                                         <td>@item.Name</td>
-                                        <td>
+                                        @*<td>
                                             @if(item.IsInStock)
                                             {
 
@@ -105,9 +105,9 @@
                                             {
                                                 <i class="fa fa-3x fa-remove text-danger"> </i>
                                             }
-                                        </td>
+                                        </td>*@
                                         <td>@item.Code</td>
-                                        <td>@item.UnitPrice</td>
+                                        @*<td>@item.UnitPrice</td>*@
                                         <td>@item.CreationDate</td>
                                         <td>@item.ProductCategory</td>
                                         <td>
@@ -115,7 +115,7 @@
                                                href="#showmodal=@Url.Page("./Index","Edit",new {id=item.Id})">
                                                 <i class="fa fa-edit"> </i> ویرایش
                                             </a>
-                                            @if(item.IsInStock)
+                                            @*@if(item.IsInStock)
                                             {
                                                 <a class="btn btn-danger btn-custom waves-effect waves-light m-b-5" asp-page-handler="RunningOutInStock" asp-route-id="@item.Id">
                                                     <i class="fa fa-remove"> </i>&nbsp; اتمام موجودی
@@ -129,7 +129,7 @@
                                                 asp-page-handler="ExistInStock" asp-route-id="@item.Id">
                                                 <i class="fa fa-check"></i>&nbsp; موجود شدن
                                                 </a>
-                                            }
+                                            }*@
 
                                         </td>
                                     </tr>
