@@ -44,10 +44,6 @@
                         <input type="text" class="form-control" asp-for="SearchModel.Code" placeholder="کد محصول">
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" asp-for="SearchModel.UnitPrice"></label>
-                        <input type="text" class="form-control" asp-for="SearchModel.UnitPrice" placeholder="قیمت محصول">
-                    </div>
-                    <div class="form-group">
                         <label class="sr-only" asp-for="SearchModel.FkCategoryId"></label>
                         <select class="form-control" asp-for="SearchModel.FkCategoryId" placeholder="قیمت محصول" asp-items="Model.ProductCategoryItems">
                             <option value="0">انتخاب گروه محصول</option>
@@ -76,9 +72,7 @@
                                     <th>#</th>
                                     <th>عکس</th>
                                     <th>نام</th>
-                                    @*<th>وضعیت درانبار</th>*@
                                     <th>کد محصول</th>
-                                    @*<th>قیمت محصول</th>*@
                                     <th>تاریخ تولید</th>
                                     <th>گروه محصول</th>
 
@@ -94,20 +88,7 @@
                                             <img src="@item.Picture" style="width: 70px; height: 70px" />
                                         </td>
                                         <td>@item.Name</td>
-                                        @*<td>
-                                            @if(item.IsInStock)
-                                            {
-
-                                                <i class="fa fa-check-circle fa-3x text-success"> </i>
-
-                                            }
-                                            else
-                                            {
-                                                <i class="fa fa-3x fa-remove text-danger"> </i>
-                                            }
-                                        </td>*@
                                         <td>@item.Code</td>
-                                        @*<td>@item.UnitPrice</td>*@
                                         <td>@item.CreationDate</td>
                                         <td>@item.ProductCategory</td>
                                         <td>

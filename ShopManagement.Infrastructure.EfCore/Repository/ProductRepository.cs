@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using _0_Framework.Application;
 using _0_Framework.Domain;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,6 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             {
                 Name = x.Name,
                 Code = x.Code,
-                //UnitPrice = x.UnitPrice,
                 ShortDescription = x.ShortDescription,
                 Description = x.Description,
                 Picture = x.Picture,
@@ -47,11 +47,9 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     Id = x.Id,
                     Picture = x.Picture,
                     Name = x.Name,
-                    //IsInStock = x.IsInStock,
                     Code = x.Code,
-                    //UnitPrice = x.UnitPrice,
                     ProductCategory =x.ProductCategory.Name,
-                    CreationDate = x.CreationDate.ToString(CultureInfo.InvariantCulture),
+                    CreationDate = x.CreationDate.ToFarsi(),
                     FkProductCategoryId = x.FkCategoryId
                     
                 });
@@ -63,8 +61,6 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 query = query.Where(x => x.Name.Contains(searchModel.Name));
             if (!string.IsNullOrWhiteSpace(searchModel.Code))
                 query = query.Where(x => x.Code.Contains(searchModel.Code));
-            if (searchModel.UnitPrice!=0 && searchModel.UnitPrice!=null)
-                query = query.Where(x => x.UnitPrice == searchModel.UnitPrice );
             if (searchModel.FkCategoryId != 0)
                 query = query.Where(x => x.FkProductCategoryId == searchModel.FkCategoryId);
 

@@ -28,9 +28,10 @@ namespace ServiceHosts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString("LampShadeDbHome");
-            
-            
+            //string connectionString = Configuration.GetConnectionString("LampShadeDbHome");
+            string connectionString = Configuration.GetConnectionString("LampShadeDbNoc");
+
+
             ShopManagementBootstrapper.Configure(services,connectionString);
             DiscountManagementBootstrapper.Configure(services,connectionString);
 
