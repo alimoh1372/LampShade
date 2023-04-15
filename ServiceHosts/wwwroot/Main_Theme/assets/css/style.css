@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i');
-
+/*@import url('https://fonts.googleapis.com/css?family=Karla:400,400i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i');
+*/
 /*=============================================
 =            CSS Index            =
 =============================================
@@ -2353,8 +2353,7 @@ select {
 }
 
 .single-grid-product__price {
-    font-family: 'IranSans'
-    , sans-serif;
+    font-family: 'IranSans',sans-serif;
 }
 
 .single-grid-product__price .main-price {

@@ -1,4 +1,4 @@
-﻿namespace _01_LampshadeQuery.Contracts.ProductCategory
+﻿namespace _01_LampshadeQuery.Contracts.Product
 {
     public class ProductQueryModel
     {
