@@ -32,8 +32,8 @@
         <!--=======  search form  =======-->
 
         <div class="search-form">
-            <form action="#">
-                <input type="search" placeholder="Search entire store here ...">
+            <form method="get" asp-page="/Search">
+                <input type="search" name="value" id="value" placeholder="جست و جوی محصولات">
                 <button type="submit">
                     <i class="ion-android-search"></i>
                 </button>
@@ -46,7 +46,7 @@
 
     <!-- scroll to top  -->
     <div id="scroll-top">
-        <span>Back to top</span><i class="ion-chevron-right"></i><i class="ion-chevron-right"></i>
+        <span> برگرد بالا</span><i class="ion-chevron-right"></i><i class="ion-chevron-right"></i>
     </div>
     <!-- end of scroll to top -->
     <!-- Vendor JS -->
