@@ -12,6 +12,7 @@
         public string Category { get; set; }
         public string UnitPrice { get; set; }
         public bool  HasDiscount { get; set; }
+        public string DiscountExpireDate { get; set; }
         public bool IsInStock { get; set; }
         public string PriceWithDiscount { get; set; }
         public int DiscountRate { get; set; }
