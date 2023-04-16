@@ -103,5 +103,85 @@ namespace _01_LampshadeQuery.Query
 
             return products;
         }
+
+        public List<ProductQueryModel> GetProductQueryModelsBy(string value)
+        {
+            var inventory = _inventoryContext.Inventory.Select(x => new
+            {
+                x.FkProductId,
+                x.UnitPrice,
+                x.IsInStock
+            }).ToList();
+            var discounts = _discountInventory.CustomerDiscounts
+                .Where(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now)
+                .Select(x => new
+                {
+                    x.FkProductId,
+                    x.DiscountRate
+                }).ToList();
+            var products = _context.Products
+                .Include(x => x.ProductCategory)
+                .Select(x => new ProductQueryModel
+                {
+
+                    Id = x.Id,
+                    Name = x.Name,
+                    ShortDescription = x.ShortDescription,
+                    Picture = x.Picture,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    Slug = x.Slug,
+                    Category = x.ProductCategory.Name,
+                    //UnitPrice = inventory.FirstOrDefault(inv => inv.FkProductId == y.Id).UnitPrice,
+                    //IsInStock = inventory.FirstOrDefault(inv => inv.FkProductId == y.Id).IsInStock,
+                    //DiscountRate = discounts.FirstOrDefault(dis => y.Id == dis.FkProductId).DiscountRate>0?,
+                    //PriceWithDiscount = discounts.FirstOrDefault(dis => y.Id == dis.FkProductId).DiscountRate,
+                })
+                .Where(x=>x.Name.Contains(value) || x.ShortDescription.Contains(value))
+                .OrderByDescending(x => x.Id).ToList();
+
+
+            foreach (ProductQueryModel product in products)
+            {
+                var productInventory = inventory.FirstOrDefault(inv => inv.FkProductId == product.Id);
+                var productDiscount = discounts.FirstOrDefault(x => x.FkProductId == product.Id);
+                if (productInventory != null)
+                {
+                    product.IsInStock = productInventory.IsInStock;
+                    product.UnitPrice = (productInventory.UnitPrice > 0) ? productInventory.UnitPrice.ToMoney() : string.Empty;
+                }
+                else
+                {
+                    product.IsInStock = false;
+                    product.UnitPrice = string.Empty;
+                }
+
+                if (!string.IsNullOrWhiteSpace(product.UnitPrice) && product.IsInStock && productDiscount != null)
+                {
+                    if (productDiscount.DiscountRate > 0)
+                    {
+                        product.HasDiscount = true;
+                        product.DiscountRate = productDiscount.DiscountRate;
+                        product.PriceWithDiscount = Math.Round((productInventory.UnitPrice - productInventory.UnitPrice * product.DiscountRate / 100)).ToMoney();
+                    }
+                    else
+                    {
+                        product.HasDiscount = false;
+                        product.DiscountRate = 0;
+                        product.PriceWithDiscount = string.Empty;
+                    }
+
+
+                }
+                else
+                {
+                    product.HasDiscount = false;
+                    product.DiscountRate = 0;
+                }
+            }
+
+
+            return products;
+        }
     }
 }

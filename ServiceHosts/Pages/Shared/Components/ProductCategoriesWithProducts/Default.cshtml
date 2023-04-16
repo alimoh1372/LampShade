@@ -114,8 +114,16 @@
                                                             </a>
                                                         </h3>
                                                         <p class="single-grid-product__price">
-                                                            <span class="discounted-price">@product.PriceWithDiscount</span>
-                                                            <span class="main-price discounted">@product.UnitPrice</span>
+                                                            @if (product.HasDiscount)
+                                                            {
+                                                                <span class="discounted-price">@product.PriceWithDiscount</span>
+                                                                <span class="main-price discounted">@product.UnitPrice</span>
+                                                            }
+                                                            else
+                                                            {
+                                                        <span class="main-price">@product.UnitPrice</span>
+                                                            }
+                                                            
                                                         </p>
                                                     </div>
                                                 </div>
