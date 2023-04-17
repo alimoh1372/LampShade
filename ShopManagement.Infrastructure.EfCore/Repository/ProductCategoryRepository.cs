@@ -56,6 +56,10 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             }
             return query.OrderByDescending(x=>x.Id).ToList();
         }
+        public string GetSlugBy(long productCategoryId)
+        {
+            return _context.ProductCategories.Find(productCategoryId).Slug;
+        }
 
     }
 }

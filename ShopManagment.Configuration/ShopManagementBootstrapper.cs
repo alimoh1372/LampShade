@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ShopManagement.Application;
 using ShopManagement.Application.Contracts.ProductCategoryContracts;
 using ShopManagement.Application.Contracts.ProductContracts;
+using ShopManagement.Application.Contracts.ProductPictureContracts;
 using ShopManagement.Application.Contracts.SlideContracts;
 using ShopManagement.Application.ProductApplication;
 using ShopManagement.Application.ProductCategoryApplication;

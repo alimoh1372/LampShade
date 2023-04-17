@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using _0_Framework.Application;
 using ShopManagement.Application.Contracts.ProductContracts;
 
-namespace ShopManagement.Application.Contracts.SlideContracts
+namespace ShopManagement.Application.Contracts.ProductPictureContracts
 {
     public class CreateProductPicture
     {

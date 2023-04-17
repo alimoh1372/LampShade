@@ -27,7 +27,8 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 Code = x.Code,
                 ShortDescription = x.ShortDescription,
                 Description = x.Description,
-                Picture = x.Picture,
+                //Picture = "x.Picture",
+                PicturePath =x.Picture, 
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 Slug = x.Slug,
@@ -66,5 +67,13 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
 
             return query.OrderByDescending(x=>x.Id).ToList();
         }
+
+        public Product GetProductWithProductCategoryBy(long id)
+        {
+          return  _context.Products.Include(x => x.ProductCategory)
+                .FirstOrDefault(x => x.Id == id);
+        }
+
+      
     }
 }

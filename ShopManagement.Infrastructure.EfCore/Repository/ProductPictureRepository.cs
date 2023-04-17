@@ -4,6 +4,7 @@ using System.Linq;
 using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contracts.ProductPictureContracts;
 using ShopManagement.Application.Contracts.SlideContracts;
 using SM.Domain.ProductPictureAgg;
 

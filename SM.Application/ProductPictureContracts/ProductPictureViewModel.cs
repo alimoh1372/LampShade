@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace ShopManagement.Application.Contracts.SlideContracts
+﻿namespace ShopManagement.Application.Contracts.ProductPictureContracts
 {
     public class ProductPictureViewModel
     {
