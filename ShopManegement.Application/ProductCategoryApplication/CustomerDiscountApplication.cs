@@ -26,7 +26,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
             }
 
             string slug = command.Slug.Slugify();
-            ProductCategory productCategory = new ProductCategory(command.Name, command.Description, command.Picture
+            ProductCategory productCategory = new ProductCategory(command.Name, command.Description, "command.Picture"
                 , command.PictureAlt, command.PictureTitle, command.Keywords, command.MetaDescription, slug);
             _productCategoryRepository.Create(productCategory);
             _productCategoryRepository.SaveChanges();
@@ -44,7 +44,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
                 return operationResult.Failed(
                     "امکان ثبت گروه محصولات با عنوان(نام)تکراری وجود ندارد.لطفا مجددا تلاش بفرمائید.");
             string slug = command.Slug.Slugify();
-            productCategory.Edit(command.Name,command.Description,command.Picture,command.PictureAlt,command.PictureTitle
+            productCategory.Edit(command.Name,command.Description,"command.Picture",command.PictureAlt,command.PictureTitle
                 ,command.Keywords,command.MetaDescription,slug);
             _productCategoryRepository.SaveChanges();
             return operationResult.Succedded();

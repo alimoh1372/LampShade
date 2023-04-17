@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using _0_Framework.Application;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace ShopManagement.Application.Contracts.ProductCategoryContracts
@@ -15,10 +16,8 @@ namespace ShopManagement.Application.Contracts.ProductCategoryContracts
         [DisplayName("توضیحات")]
         [StringLength(500, ErrorMessage = ValidatingMessage.MaxLength)]
         public string Description { get;  set; }
-        [DisplayName("تصویر")]
-        [Required(ErrorMessage = ValidatingMessage.IsRequired)]
-        [StringLength(1000, ErrorMessage = ValidatingMessage.MaxLength)]
-        public string Picture { get;  set; }
+       
+        public IFormFile Picture { get;  set; }
         [DisplayName("Alt تصویر")]
         [StringLength(255, ErrorMessage = ValidatingMessage.MaxLength)]
         public string PictureAlt { get;  set; }

@@ -9,10 +9,11 @@ namespace ShopManagement.Application.ProductCategoryApplication
     public class ProductCategoryApplication :IProductCategoryApplication
     {
         private readonly IProductCategoryRepository _productCategoryRepository;
-
-        public ProductCategoryApplication(IProductCategoryRepository productCategoryRepository)
+        private readonly IFileUpload _fileUpload;
+        public ProductCategoryApplication(IProductCategoryRepository productCategoryRepository, IFileUpload fileUpload)
         {
             _productCategoryRepository = productCategoryRepository;
+            _fileUpload = fileUpload;
         }
 
         public OperationResult Create(CreateProductCategory command)
@@ -26,7 +27,7 @@ namespace ShopManagement.Application.ProductCategoryApplication
             }
 
             string slug = command.Slug.Slugify();
-            ProductCategory productCategory = new ProductCategory(command.Name, command.Description, command.Picture
+            ProductCategory productCategory = new ProductCategory(command.Name, command.Description, "command.Picture"
                 , command.PictureAlt, command.PictureTitle, command.Keywords, command.MetaDescription, slug);
             _productCategoryRepository.Create(productCategory);
             _productCategoryRepository.SaveChanges();
@@ -44,11 +45,13 @@ namespace ShopManagement.Application.ProductCategoryApplication
                 return operationResult.Failed(
                     "امکان ثبت گروه محصولات با عنوان(نام)تکراری وجود ندارد.لطفا مجددا تلاش بفرمائید.");
             string slug = command.Slug.Slugify();
-            productCategory.Edit(command.Name,command.Description,command.Picture,command.PictureAlt,command.PictureTitle
+            string path = $"UploadedFiles//ProductCategory//{slug}";
+            string picture = _fileUpload.UploadFile(command.Picture, path);
+            productCategory.Edit(command.Name,command.Description,picture,command.PictureAlt,command.PictureTitle
                 ,command.Keywords,command.MetaDescription,slug);
             _productCategoryRepository.SaveChanges();
             return operationResult.Succedded();
-
+            
         }
 
         public EditProductCategory GetDetails(long id)
