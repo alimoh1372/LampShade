@@ -29,7 +29,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 Keywords = x.Keywords,
                 MetaDescription = x.MetaDescription,
                 Name = x.Name,
-               // Picture = x.Picture,
+                PicturePath = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 Slug = x.Slug

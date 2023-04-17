@@ -24,7 +24,7 @@
             </div><div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="Slug" class="control-label"></label>
-                    <input type="text" class="form-control" asp-for="Slug">
+                    <input type="text" class="form-control" asp-for="Slug" >
                     <span asp-validation-for="Slug" class="error"></span>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label asp-for="Picture" class="control-label"></label>
-                    <input type="text" class="form-control" asp-for="Picture" accept="image/*">
+                    <input type="file" class="form-control" asp-for="Picture"  accept="image/*">
                     <span asp-validation-for="Picture" class="error"></span>
                 </div>
             </div>

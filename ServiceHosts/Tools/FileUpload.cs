@@ -31,10 +31,29 @@ namespace ServiceHosts.Tools
                 Directory.CreateDirectory(pathDirectory);
             }
 
-            using FileStream output= System.IO.File.Create(_path);
-            file.CopyToAsync(output);
+            if (!File.Exists(_path))
+            {
+                using FileStream output = System.IO.File.Create(_path);
+                file.CopyTo(output);
 
-            return $"{path}//{fileName}";
+            }
+
+            return $"{path}/{fileName}";
+
+        }
+
+        public bool DeleteFile(string filePath)
+        {
+            string rootDirectory = _webHostEnvironment.WebRootPath;
+            string _filePath =$"{rootDirectory}/{filePath}";
+            string directory = Path.GetDirectoryName(_filePath);
+            if (Directory.Exists(directory))
+            {
+                if(File.Exists(_filePath))
+                    File.Delete(_filePath);
+            }
+
+            return true;
 
         }
     }

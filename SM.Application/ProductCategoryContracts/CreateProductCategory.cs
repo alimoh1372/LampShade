@@ -17,8 +17,8 @@ namespace ShopManagement.Application.Contracts.ProductCategoryContracts
         [StringLength(500, ErrorMessage = ValidatingMessage.MaxLength)]
         public string Description { get; set; }
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
-        [MaxFileSize(3 * 1024 * 1024, ErrorMessage = ValidatingMessage.MaxFileSize)]
-        [FileExtension(new string[]{".jpeg",".png",".jpeg"},ErrorMessage = ValidatingMessage.FileExtension)]
+        [MaxFileSize(3 * 1024* 1024 , ErrorMessage = ValidatingMessage.MaxFileSize)] 
+        [FileExtension(new string[]{".jpg",".png",".jpeg"},ErrorMessage = ValidatingMessage.FileExtension)]
         public IFormFile Picture { get; set; }
         [DisplayName("Alt تصویر")]
         [StringLength(255, ErrorMessage = ValidatingMessage.MaxLength)]

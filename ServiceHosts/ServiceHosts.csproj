@@ -40,4 +40,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\UploadedFiles\ProductCategory\آباژور\" />
+    <Folder Include="wwwroot\UploadedFiles\ProductCategory\لوازمالکتریکی\" />
+    <Folder Include="wwwroot\UploadedFiles\ProductCategory\نگهدارنده\" />
+  </ItemGroup>
+
 </Project>
