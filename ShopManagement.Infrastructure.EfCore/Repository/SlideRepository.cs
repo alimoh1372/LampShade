@@ -55,7 +55,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
         {
             EditSlide editSlide = _context.Slides.Select(x => new EditSlide
             {
-                Picture = x.Picture,
+                PicturePath = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 Heading = x.Heading,

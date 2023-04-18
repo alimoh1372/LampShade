@@ -23,7 +23,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
             EditProductPicture editProduct = _context.ProductPictures
                 .Select(x => new EditProductPicture
                 {
-                    Picture = x.Picture,
+                    PicturePath = x.Picture,
                     PictureAlt =x.PictureAlt,
                     PictureTitle =x.PictureTitle,
                     FkProductId = x.FkProductId,
@@ -59,6 +59,14 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                 query = query.Where(x => x.PictureTitle == searchModel.PictureTitle);
 
             return query.OrderByDescending(x => x.Id).ToList();
+        }
+
+        public ProductPicture GetProductPictureWithProductAndProductCategoryBy(long id)
+        {
+            return _context.ProductPictures
+                .Include(x => x.Product)
+                .ThenInclude(x => x.ProductCategory)
+                .FirstOrDefault(x => x.Id == id);
         }
     }
 }

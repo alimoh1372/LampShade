@@ -48,11 +48,6 @@ namespace ShopManagement.Application.ProductApplication
             OperationResult result = new OperationResult();
             Product product = _productRepository.GetProductWithProductCategoryBy(command.Id);
             string pictureBeforUpdatePath = product.Picture;
-            if (product == null)
-            {
-                result.Failed(ApplicationMessage.NotFound);
-                return result;
-            }
 
             if (_productRepository.IsExists(x => x.Name == command.Name && x.Code == command.Code && x.Id != command.Id))
             {

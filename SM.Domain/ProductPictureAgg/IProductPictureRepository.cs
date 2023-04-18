@@ -9,5 +9,7 @@ namespace SM.Domain.ProductPictureAgg
     {
         EditProductPicture GetDetails(long id);
         List<ProductPictureViewModel> Search(ProductPictureSearchModel searchModel = null);
+
+        ProductPicture GetProductPictureWithProductAndProductCategoryBy(long id);
     }
 }
