@@ -51,8 +51,8 @@
                                                  data-slick-setting='{
                                                 "slidesToShow": 1,
                                                 "slidesToScroll": 1,
-                                                "arrows": true,
-                                                "autoplay": true,
+                                                "arrows": false,
+                                                "autoplay": false,
                                                 "autoplaySpeed": 5000,
                                                 "fade": true,
                                                 "speed": 500,
@@ -73,7 +73,7 @@
                                                 @foreach (var productPicture in Model.Product.ProductPictures)
                                                 {
                                                     <div class="single-image">
-                                                        <img src="@productPicture.Picture" class="img-fluid"
+                                                        <img src="~/@productPicture.Picture" class="img-fluid"
                                                              alt="@productPicture.PictureAlt" title="@productPicture.PictureTitle">
                                                     </div>
                                                 }
@@ -86,7 +86,7 @@
                                                 "slidesToShow": 4,
                                                 "slidesToScroll": 1,
                                                 "arrows": true,
-                                                "autoplay": true,
+                                                "autoplay": false,
                                                 "autoplaySpeed": 5000,
                                                 "speed": 500,
                                                 "asNavFor": ".product-details-big-image-slider-wrapper",
@@ -109,7 +109,7 @@
                                             @foreach (var productPicture in Model.Product.ProductPictures)
                                             {
                                                 <div class="single-image">
-                                                    <img src="@productPicture.Picture" class="img-fluid"
+                                                    <img src="~/@productPicture.Picture" class="img-fluid"
                                                          alt="@productPicture.PictureAlt" title="@productPicture.PictureTitle">
                                                 </div>
                                             }
@@ -139,11 +139,11 @@
                                             </span>
                                         </div>
 
-                                        <p class="single-grid-product__price">
+                                        <p class="single-grid-product__price" style="direction: rtl">
                                             @if (Model.Product.HasDiscount)
                                             {
                                                 <span class="discounted-price">@Model.Product.PriceWithDiscount تومان</span>
-                                                <span class="main-price discounted">@Model.Product.UnitPrice</span>
+                                                <span class="main-price discounted">@Model.Product.UnitPrice تومان</span>
                                             }
                                             else
                                             {
@@ -155,7 +155,7 @@
                                         <p class="single-info">کد محصول: <span class="value">@Model.Product.Code</span> </p>
                                         @if (Model.Product.HasDiscount)
                                         {
-                                            <p class="single-info">Reward Points: <span class="value">@Model.Product.DiscountPoint تومان</span> </p>
+                                            <p class="single-info">میزان سود شما از این خرید: <span class="value">@Model.Product.DiscountPoint تومان</span> </p>
                                         }
                                         @if (Model.Product.IsInStock)
                                         {
@@ -246,10 +246,10 @@
                                             <div class="nav nav-tabs justify-content-center" id="nav-tab"
                                                  role="tablist">
                                                 <a class="nav-item nav-link active" id="description-tab"
-                                                   data-toggle="tab" href="#product-description" role="tab"
-                                                   aria-selected="true">Description</a>
+                                                   data-toggle="tab" href="#" role="tab"
+                                                   aria-selected="true">توضیحات محصول</a>
                                                 <a class="nav-item nav-link" id="review-tab" data-toggle="tab"
-                                                   href="#review" role="tab" aria-selected="false">Reviews (1)</a>
+                                                   href="#" role="tab" aria-selected="false">نظرات (1)</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -259,25 +259,9 @@
 
                                                 <div class="product-description">
                                                     <p>
-                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-                                                        fringilla augue nec est tristique auctor. Donec non est at
-                                                        libero vulputate rutrum. Morbi ornare lectus quis justo
-                                                        gravida semper. Nulla tellus mi, vulputate adipiscing cursus
-                                                        eu, suscipit id nulla.
+                                                       @Model.Product.Description
                                                     </p>
 
-                                                    <p>
-                                                        Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus
-                                                        feugiat sem, quis fermentum turpis eros eget velit. Donec ac
-                                                        tempus ante. Fusce ultricies massa massa. Fusce aliquam,
-                                                        purus eget sagittis vulputate, sapien libero hendrerit est,
-                                                        sed commodo augue nisi non neque. Lorem ipsum dolor sit
-                                                        amet, consectetur adipiscing elit. Sed tempor, lorem et
-                                                        placerat vestibulum, metus nisi posuere nisl, in accumsan
-                                                        elit odio quis mi. Cras neque metus, consequat et blandit
-                                                        et, luctus a nunc. Etiam gravida vehicula tellus, in
-                                                        imperdiet ligula euismod eget.
-                                                    </p>
                                                 </div>
 
                                                 <!--=======  End of product description  =======-->

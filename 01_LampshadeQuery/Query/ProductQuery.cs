@@ -26,6 +26,7 @@ namespace _01_LampshadeQuery.Query
 
         public ProductQueryModel GetProductDetailsBy(string slug)
         {
+            double unitPrice;
             var product = _context.Products
                 .Include(x => x.ProductCategory)
                 .Include(x => x.ProductPictures)
@@ -72,11 +73,13 @@ namespace _01_LampshadeQuery.Query
                     .Select(x => new
                     {
                         x.FkProductId,
-                        x.DiscountRate
+                        x.DiscountRate,
+                        x.EndDate
                     }).FirstOrDefault(dis => dis.FkProductId == product.Id);
 
                 if (productInventory != null)
                 {
+                    unitPrice = (productInventory.UnitPrice > 0) ? productInventory.UnitPrice :0;
                     product.IsInStock = productInventory.IsInStock;
                     product.UnitPrice = (productInventory.UnitPrice > 0) ? productInventory.UnitPrice.ToMoney() : string.Empty;
                     product.CurrentCount = productInventory.CurrentCount.ToString("##,###");
@@ -91,18 +94,24 @@ namespace _01_LampshadeQuery.Query
                 {
                     if (productDiscount.DiscountRate > 0)
                     {
-                        var discountedPrice = Math.Round((productInventory.UnitPrice -
-                                                          productInventory.UnitPrice * product.DiscountRate / 100));
+                        var discountedPrice =
+                            Math.Round(
+                            productInventory.UnitPrice
+                            - (productInventory.UnitPrice * productDiscount.DiscountRate / 100)
+                            );
+
                         product.HasDiscount = true;
                         product.DiscountRate = productDiscount.DiscountRate;
                         product.PriceWithDiscount = discountedPrice.ToMoney();
                         product.DiscountPoint = Math.Round(productInventory.UnitPrice - discountedPrice).ToMoney();
+                        product.DiscountExpireDate = productDiscount.EndDate.ToDiscountDate();
                     }
                     else
                     {
                         product.HasDiscount = false;
                         product.DiscountRate = 0;
                         product.PriceWithDiscount = string.Empty;
+                        product.DiscountPoint = string.Empty;
                     }
 
 
