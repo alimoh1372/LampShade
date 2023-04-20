@@ -246,10 +246,10 @@
                                             <div class="nav nav-tabs justify-content-center" id="nav-tab"
                                                  role="tablist">
                                                 <a class="nav-item nav-link active" id="description-tab"
-                                                   data-toggle="tab" href="#" role="tab"
-                                                   aria-selected="true">توضیحات محصول</a>
+                                                   data-toggle="tab" href="#product-description" role="tab"
+                                                   aria-selected="true">توضیحات</a>
                                                 <a class="nav-item nav-link" id="review-tab" data-toggle="tab"
-                                                   href="#" role="tab" aria-selected="false">نظرات (1)</a>
+                                                   href="#review" role="tab" aria-selected="false">نظرات (1)</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -259,7 +259,7 @@
 
                                                 <div class="product-description">
                                                     <p>
-                                                       @Model.Product.Description
+                                                        @Model.Product.Description
                                                     </p>
 
                                                 </div>
@@ -275,48 +275,48 @@
                                                         <h4>4.5 <span>(Overall)</span></h4>
                                                         <span>Based on 9 Comments</span>
                                                     </div>
-                                                    <div class="rating-list">
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <span>(5)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(3)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(1)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(0)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(0)</span>
-                                                        </div>
-                                                    </div>
+                                                    @*<div class="rating-list">
+                                                            <div class="sin-list float-right">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <span>(5)</span>
+                                                            </div>
+                                                            <div class="sin-list float-right">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <span>(3)</span>
+                                                            </div>
+                                                            <div class="sin-list float-right">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <span>(1)</span>
+                                                            </div>
+                                                            <div class="sin-list float-right">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <span>(0)</span>
+                                                            </div>
+                                                            <div class="sin-list float-right">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <i class="fa fa-star-o"></i>
+                                                                <span>(0)</span>
+                                                            </div>
+                                                        </div>*@
                                                     <div class="ratings-wrapper">
 
                                                         <div class="sin-ratings">
@@ -383,36 +383,47 @@
                                                         </div>
 
                                                     </div>
+
                                                     <div class="rating-form-wrapper fix">
                                                         <h3>Add your Comments</h3>
-                                                        <form action="#">
+                                                        <form method="post">
                                                             <div class="rating-form row">
                                                                 <div class="col-12 mb-15">
-                                                                    <h5>Rating:</h5>
-                                                                    <div class="rating-star fix">
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
+                                                                    <h5>امتیاز:</h5>
+
+                                                                    <div class="wrapper-range">
+                                                                        <div class="sliderValue">
+                                                                            <span id="rangSpan">50</span>
+                                                                        </div>
+
+                                                                        <div class="field">
+
+                                                                            <div class="value left">1</div>
+
+                                                                            <input id="point" name="point" type="range" min="1" max="5" value="1" steps="1">
+                                                                            <div class="value right">5</div>
+                                                                        </div>
                                                                     </div>
+
                                                                 </div>
                                                                 <div class="col-md-6 col-12 form-group">
-                                                                    <label for="name">Name:</label>
-                                                                    <input id="name" placeholder="Name" type="text">
+                                                                    <label for="name">نام:</label>
+                                                                    <input id="name" name="name" required="required" placeholder="نام خود را وارد نمائید" type="text">
                                                                 </div>
                                                                 <div class="col-md-6 col-12 form-group">
-                                                                    <label for="email">Email:</label>
-                                                                    <input id="email" placeholder="Email"
-                                                                           type="text">
+                                                                    <label for="email">ایمیل:</label>
+                                                                    <input id="email" name="email" placeholder="ایمیل خود را وارد نمائید."
+                                                                           type="email">
                                                                 </div>
                                                                 <div class="col-12 form-group">
-                                                                    <label for="your-review">Your Review:</label>
-                                                                    <textarea name="review" id="your-review"
-                                                                              placeholder="Write a review"></textarea>
+                                                                    <label for="message">متن :</label>
+                                                                    <textarea name="message" id="message"
+                                                                              placeholder="نظر خود را در این قسمت وارد نمائید."></textarea>
                                                                 </div>
+                                                                <input type="hidden" id="fkproductid" name="fkproductid" />
+                                                                <input type="hidden" id="slug" name="slug" />
                                                                 <div class="col-12">
-                                                                    <input value="add review" type="submit">
+                                                                    <input value="ثبت نظر" type="submit">
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -439,3 +450,25 @@
     </div>
 </div>
 <!--====================  End of page content area  ====================-->
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            const slideValue = document.getElementById("rangSpan");
+            const inputSlider = document.getElementById("point");
+
+            inputSlider.oninput = (() => {
+                let value = inputSlider.value;
+                slideValue.textContent = value;
+                slideValue.style.left = (value) + "%";
+                slideValue.classList.add("show");
+            });
+
+            inputSlider.onblur = (() => {
+                slideValue.classList.remove("show");
+            });
+        });
+
+
+    </script>
+
+}

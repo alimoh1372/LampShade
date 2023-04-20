@@ -219,3 +219,20 @@ jQuery.validator.addMethod("extensions",
         return res;
     });
 jQuery.validator.unobtrusive.adapters.addBool("extensions");
+
+
+
+const slideValue = document.getElementById("rangSpan");
+const inputSlider = document.querySelector("input");
+
+inputSlider.oninput = (() => {
+    let value = inputSlider.value;
+    slideValue.textContent = value;
+    slideValue.style.left = (value) + "%";
+    slideValue.classList.add("show");
+});
+
+inputSlider.onblur = (() => {
+    slideValue.classList.remove("show");
+});
+
