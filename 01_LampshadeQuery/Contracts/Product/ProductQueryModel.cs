@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _01_LampshadeQuery.Contracts.Comment;
 using _01_LampshadeQuery.Contracts.ProductPicture;
 
 namespace _01_LampshadeQuery.Contracts.Product
@@ -27,7 +28,8 @@ namespace _01_LampshadeQuery.Contracts.Product
         public int DiscountRate { get; set; }
         public string Category { get; set; }
         public string CategorySlug { get; set; }
-
+        public string CommentsAveragePoint { get; set; }
+        public List<CommentQueryModel> Comments { get; set; }
         public List<ProductPictureQueryModel> ProductPictures { get; set; }
         
     }

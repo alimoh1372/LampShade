@@ -10,7 +10,7 @@
 
         public string CreationDate { get; set; }
         public bool IsConfirmed { get; set; }
-
+        public string Point { get; set; }
         public long  FkProductId { get; set; }
         public string Product { get; set; }
         

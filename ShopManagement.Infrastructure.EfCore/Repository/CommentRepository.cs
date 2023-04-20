@@ -25,6 +25,7 @@ namespace ShopManagement.Infrastructure.EfCore.Repository
                     Id = x.Id,
                     Name = x.Name,
                     Message = x.Message,
+                    Point = x.Point.ToString(),
                     CreationDate = x.CreationDate.ToFarsi(),
                     FkProductId = x.FkProductId,
                     Email = x.Email,

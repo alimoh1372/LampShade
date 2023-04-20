@@ -1,6 +1,7 @@
 ﻿@page "{id}"
 
 
+@using _01_LampshadeQuery.Contracts.Comment
 @model ServiceHosts.Pages.ProductModel
 @{
     ViewData["Title"] = "جزئیات محصول";
@@ -249,7 +250,7 @@
                                                    data-toggle="tab" href="#product-description" role="tab"
                                                    aria-selected="true">توضیحات</a>
                                                 <a class="nav-item nav-link" id="review-tab" data-toggle="tab"
-                                                   href="#review" role="tab" aria-selected="false">نظرات (1)</a>
+                                                   href="#review" role="tab" aria-selected="false">نظرات (@Model.Product.Comments.Count)</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -272,8 +273,8 @@
 
                                                 <div class="product-rating-wrap">
                                                     <div class="pro-avg-rating">
-                                                        <h4>4.5 <span>(Overall)</span></h4>
-                                                        <span>Based on 9 Comments</span>
+                                                        <h4>@Model.Product.CommentsAveragePoint <span>(امتیاز کاربران)</span></h4>
+                                                        <span>از @Model.Product.Comments.Count داده شده</span>
                                                     </div>
                                                     @*<div class="rating-list">
                                                             <div class="sin-list float-right">
@@ -318,79 +319,40 @@
                                                             </div>
                                                         </div>*@
                                                     <div class="ratings-wrapper">
-
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Cristopher Lee</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
+                                                        @foreach (CommentQueryModel comment in Model.Product.Comments)
+                                                        {
+                                                            <div class="sin-ratings">
+                                                                <div class="rating-author">
+                                                                    <h3>@comment.Name</h3>
+                                                                    <div class="rating-star">
+                                                                        @for (int i = 0; i < 5; i++)
+                                                                        {
+                                                                            if (i < comment.Point)
+                                                                            {
+                                                                                <i class="fa fa-star"></i>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <i class="fa fa-star-o"></i>
+                                                                            }
+                                                                        }
+                                                                        <span>(@comment.Point)</span>
+                                                                    </div>
                                                                 </div>
+                                                                <p>
+                                                                    @comment.Message
+                                                                </p>
                                                             </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
-
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Rashed Mahmud</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
-                                                                </div>
-                                                            </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
-
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Hasan Mubarak</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
-                                                                </div>
-                                                            </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
+                                                        }
 
                                                     </div>
 
                                                     <div class="rating-form-wrapper fix">
-                                                        <h3>Add your Comments</h3>
+                                                        <h3>نظرات خود را با ما در میان بگذارید</h3>
                                                         <form method="post">
                                                             <div class="rating-form row">
-                                                                <div class="col-12 mb-15">
-                                                                    <h5>امتیاز:</h5>
-
+                                                                <div class="col-12">
+                                                                    <h5>به این محصول امتیاز دهید:</h5>
                                                                     <div class="wrapper-range">
                                                                         <div class="sliderValue">
                                                                             <span id="rangSpan">50</span>
@@ -420,8 +382,8 @@
                                                                     <textarea name="message" id="message"
                                                                               placeholder="نظر خود را در این قسمت وارد نمائید."></textarea>
                                                                 </div>
-                                                                <input type="hidden" id="fkproductid" name="fkproductid" />
-                                                                <input type="hidden" id="slug" name="slug" />
+                                                                <input type="hidden" id="fkproductid" name="fkproductid" value="@Model.Product.Id" />
+                                                                <input type="hidden" id="slug" name="slug" value="@Model.Product.Slug" />
                                                                 <div class="col-12">
                                                                     <input value="ثبت نظر" type="submit">
                                                                 </div>
@@ -459,7 +421,7 @@
             inputSlider.oninput = (() => {
                 let value = inputSlider.value;
                 slideValue.textContent = value;
-                slideValue.style.left = (value) + "%";
+                slideValue.style.right = (value) + "%";
                 slideValue.classList.add("show");
             });
 

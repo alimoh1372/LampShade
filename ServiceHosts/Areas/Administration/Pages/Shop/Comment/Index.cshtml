@@ -72,6 +72,8 @@
                                     <th>#</th>
                                     <th>نام</th>
                                     <th>ایمیل</th>
+                                    <th>محصول</th>
+                                    <th>امتیاز</th>
                                     <th>تاریخ ایجاد</th>
                                     <th>متن نظر</th>
                                     <th>وضعیت نظر</th>
@@ -85,19 +87,24 @@
                                         <td>@item.Id</td>
                                         <td>@item.Name</td>
                                         <td>@item.Email</td>
+                                        <td>@item.Product</td>
+                                        <td>@item.Point</td>
                                         <td>@item.CreationDate</td>
                                         <td>@item.Message</td>
-                                        <td>
-                                            @if (item.IsConfirmed)
-                                            {
-                                                <i class="fa fa-check-circle fa-3x text-success">تائید شده </i>
-                                            }
-                                            else
-                                            {
 
-                                                <i class="fa fa-3x fa-remove text-danger"> رد شده</i>
-                                            }
-                                        </td>
+                                        @if (item.IsConfirmed)
+                                        {
+                                            <td>
+                                                <i class="fa fa-check-circle fa-3x text-success"> </i> تائید شده
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <i class="fa fa-3x fa-remove text-danger"> </i> در انتظار تائید
+                                            </td>
+                                        }
+
 
                                         <td>
 

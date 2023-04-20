@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using _0_Framework.Application;
+using _01_LampshadeQuery.Contracts.Comment;
 using _01_LampshadeQuery.Contracts.Product;
 using _01_LampshadeQuery.Contracts.ProductCategory;
 using _01_LampshadeQuery.Contracts.ProductPicture;
@@ -26,10 +27,12 @@ namespace _01_LampshadeQuery.Query
 
         public ProductQueryModel GetProductDetailsBy(string slug)
         {
-            double unitPrice;
+            double unitPrice = 0;
             var product = _context.Products
+
                 .Include(x => x.ProductCategory)
                 .Include(x => x.ProductPictures)
+                .Include(x => x.Comments)
                 .Select(x => new ProductQueryModel
                 {
 
@@ -46,6 +49,19 @@ namespace _01_LampshadeQuery.Query
                     Code = x.Code,
                     Category = x.ProductCategory.Name,
                     CategorySlug = x.ProductCategory.Slug,
+                    Comments = x.Comments.Select(z => new CommentQueryModel
+                    {
+                        Id = z.Id,
+                        Name = z.Name,
+                        Email = z.Email,
+                        Message = z.Message,
+                        CreationDate = z.CreationDate.ToFarsi(),
+                        Point = z.Point,
+                        IsConfirmed = z.IsConfirmed,
+                        FkProductId = x.Id
+                    })
+                        .Where(z => z.FkProductId == x.Id && z.IsConfirmed == true)
+                        .OrderByDescending(z => z.Id).ToList(),
                     ProductPictures = x.ProductPictures.Select(y => new ProductPictureQueryModel
                     {
                         Picture = y.Picture,
@@ -58,9 +74,17 @@ namespace _01_LampshadeQuery.Query
                 })
                 .FirstOrDefault(x => x.Slug == slug);
 
-
+           
             if (product != null)
             {
+                if (product.Comments.Any())
+                {
+                    product.CommentsAveragePoint = product.Comments.Average(x => x.Point).ToString("##.00");
+                }
+                else
+                {
+                    product.CommentsAveragePoint = "0";
+                }
                 var productInventory = _inventoryContext.Inventory.Select(x => new
                 {
                     x.FkProductId,
@@ -79,7 +103,7 @@ namespace _01_LampshadeQuery.Query
 
                 if (productInventory != null)
                 {
-                    unitPrice = (productInventory.UnitPrice > 0) ? productInventory.UnitPrice :0;
+                    unitPrice = (productInventory.UnitPrice > 0) ? productInventory.UnitPrice : 0;
                     product.IsInStock = productInventory.IsInStock;
                     product.UnitPrice = (productInventory.UnitPrice > 0) ? productInventory.UnitPrice.ToMoney() : string.Empty;
                     product.CurrentCount = productInventory.CurrentCount.ToString("##,###");
