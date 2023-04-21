@@ -12,9 +12,10 @@ namespace BlogManagement.Application.Contracts.ArticleCategoryContracts
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(255, ErrorMessage = ValidatingMessage.MaxLength)]
         public string Name { get;  set; }
-        [DisplayName("تصویر مقاله")]
+        [DisplayName("تصویر")]
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [MaxFileSize(3 * 1024 * 1024, ErrorMessage = ValidatingMessage.MaxLength)]
+        [FileExtension(new[] { ".jpeg", ".jpg", ".png" })]
         public IFormFile Picture { get;  set; }
 
         [DisplayName("Alt تصویر(SEO)")]
@@ -45,8 +46,7 @@ namespace BlogManagement.Application.Contracts.ArticleCategoryContracts
         [StringLength(150, ErrorMessage = ValidatingMessage.MaxLength)]
         public string MetaDescription { get;  set; }
         [DisplayName("آدرس متعارف SEO")]
-        [Required(ErrorMessage = ValidatingMessage.IsRequired)]
-        [StringLength(500, ErrorMessage = ValidatingMessage.MaxLength)]
+        [StringLength(1000, ErrorMessage = ValidatingMessage.MaxLength)]
         public string CanonicalAddress { get;  set; }
     }
 }

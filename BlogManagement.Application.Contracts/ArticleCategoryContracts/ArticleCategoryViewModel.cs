@@ -7,10 +7,8 @@
       
         public string Picture { get; set; }
 
-        public string PictureAlt { get; set; }
 
         public int ShowOrder { get; set; }
-
-       
+        public long Id { get; set; }
     }
 }
