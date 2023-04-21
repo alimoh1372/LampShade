@@ -274,7 +274,7 @@
                                                 <div class="product-rating-wrap">
                                                     <div class="pro-avg-rating">
                                                         <h4>@Model.Product.CommentsAveragePoint <span>(امتیاز کاربران)</span></h4>
-                                                        <span>از @Model.Product.Comments.Count داده شده</span>
+                                                        <span> از @Model.Product.Comments.Count امتیاز داده شده</span>
                                                     </div>
                                                     @*<div class="rating-list">
                                                             <div class="sin-list float-right">
@@ -355,7 +355,7 @@
                                                                     <h5>به این محصول امتیاز دهید:</h5>
                                                                     <div class="wrapper-range">
                                                                         <div class="sliderValue">
-                                                                            <span id="rangSpan">50</span>
+                                                                            <span id="rangSpan">0</span>
                                                                         </div>
 
                                                                         <div class="field">
@@ -421,8 +421,9 @@
             inputSlider.oninput = (() => {
                 let value = inputSlider.value;
                 slideValue.textContent = value;
-                slideValue.style.right = (value) + "%";
+                slideValue.style.left =Number(((value / 5) *100)-25) + "%";
                 slideValue.classList.add("show");
+               
             });
 
             inputSlider.onblur = (() => {

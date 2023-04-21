@@ -8421,8 +8421,8 @@ from {
     position: absolute;
     height: 45px;
     width: 45px;
-    transform: translateX(-70%) scale(0);
-    font-weight: 500;
+    transform: translateX(-60%) scale(0);
+    font-weight: 600;
     top: -40px;
     line-height: 55px;
     z-index: 2;

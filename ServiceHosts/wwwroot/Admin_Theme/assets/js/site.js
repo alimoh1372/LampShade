@@ -222,18 +222,3 @@ jQuery.validator.unobtrusive.adapters.addBool("extensions");
 
 
 
-const slideValue = document.getElementById("rangSpan");
-const inputSlider = document.querySelector("input");
-
-inputSlider.oninput = (() => {
-    let value = inputSlider.value;
-    slideValue.textContent = value;
-    slideValue.style.left =Number(100-Number(value)) + "%";
-    slideValue.classList.add("show");
-    debugger;
-});
-
-inputSlider.onblur = (() => {
-    slideValue.classList.remove("show");
-});
-
