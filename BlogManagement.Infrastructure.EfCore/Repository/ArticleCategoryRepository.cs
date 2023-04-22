@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using BlogManagement.Application.Contracts.ArticleCategoryContracts;
 using BlogManagement.Domain.ArticleCategoryAgg;
@@ -40,7 +41,11 @@ namespace BlogManagement.Infrastructure.EfCore.Repository
                 Id=x.Id,
                 Name = x.Name,
                 Picture = x.Picture,
-                ShowOrder = x.ShowOrder
+                ShowOrder = x.ShowOrder,
+                CreationDate=x.CreationDate.ToFarsi(),
+                PictureAlt=x.PictureAlt,
+                PictureTitle=x.PictureTitle,
+                Description=x.Description
             });
             if (!string.IsNullOrWhiteSpace(searchModel.Name))
             {
@@ -48,6 +53,13 @@ namespace BlogManagement.Infrastructure.EfCore.Repository
             }
 
             return query.OrderByDescending(x => x.Id).ToList();
+        }
+
+        public string GetSlugBy(long id)
+        {
+           return _context.ArticleCategories
+               .Select(x => new { x.Id, x.Slug })
+               .FirstOrDefault(x => x.Id==id)?.Slug;
         }
     }
 }

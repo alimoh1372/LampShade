@@ -25,7 +25,7 @@ namespace BlogManagement.Application
             }
 
             string slug = command.Slug.Slugify();
-            string basePath = $"UploadedFiles/ArticleCategory/";
+            string basePath = $"UploadedFiles/ArticleCategory/{slug}";
             string picture = _fileUpload.UploadFile(command.Picture, basePath);
             ArticleCategory articleCategory = new ArticleCategory(command.Name, picture, command.PictureTitle,
                 command.PictureAlt, command.Description, command.ShowOrder,
@@ -51,7 +51,7 @@ namespace BlogManagement.Application
             string slug = command.Slug.Slugify();
             string pictureBeforeUpdate = articleCategory.Picture;
 
-            string basePath = $"UploadedFiles/ArticleCategory/";
+            string basePath = $"UploadedFiles/ArticleCategory/{slug}/";
             string picture = _fileUpload.UploadFile(command.Picture, basePath);
             articleCategory.Edit(command.Name, picture, command.PictureTitle,
                 command.PictureAlt, command.Description, command.ShowOrder,
