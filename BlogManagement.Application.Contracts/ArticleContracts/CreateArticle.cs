@@ -24,15 +24,17 @@ namespace BlogManagement.Application.Contracts.ArticleContracts
         [DisplayName("تصویر")]
         [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [MaxFileSize(3 * 1024 * 1024, ErrorMessage = ValidatingMessage.MaxLength)]
-        [FileExtension(new[] { ".jpeg", ".jpg", ".png" })]
+        [FileExtension(new[] { ".jpeg", ".jpg", ".png" },ErrorMessage = ValidatingMessage.FileExtension)]
         public IFormFile Picture { get; set; }
 
 
         [DisplayName("Alt تصویر(SEO)")]
+        [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(300, ErrorMessage = ValidatingMessage.MaxLength)]
         public string PictureAlt { get; set; }
 
         [DisplayName("Title تصویر(SEO)")]
+        [Required(ErrorMessage = ValidatingMessage.IsRequired)]
         [StringLength(400, ErrorMessage = ValidatingMessage.MaxLength)]
         public string PictureTitle { get; set; }
         [DisplayName("تاریخ انتشار")]

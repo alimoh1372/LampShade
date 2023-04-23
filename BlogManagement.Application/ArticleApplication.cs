@@ -65,7 +65,10 @@ namespace BlogManagement.Application
                 , publishDate, command.FkArticleCategoryId, command.Slug, command.Keywords,
                 command.MetaDescription, command.CanonicalAddress);
             _articleRepository.SaveChanges();
-            _fileUpload.DeleteFile(picture);
+            if (!string.IsNullOrWhiteSpace(picture))
+            {
+                _fileUpload.DeleteFile(pictureBeforeUpdate);
+            }
             return result.Succedded();
         }
 

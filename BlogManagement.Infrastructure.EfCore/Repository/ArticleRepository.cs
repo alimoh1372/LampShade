@@ -53,7 +53,7 @@ namespace BlogManagement.Infrastructure.EfCore.Repository
                     Category = x.ArticleCategory.Name,
                     FkArticleCategoryId = x.FkArticleCategoryId
                 });
-            if (string.IsNullOrWhiteSpace(searchModel.Title))
+            if (!string.IsNullOrWhiteSpace(searchModel.Title))
             {
                 query = query.Where(x => x.Title.Contains(searchModel.Title));
             }

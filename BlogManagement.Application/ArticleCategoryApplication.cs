@@ -70,5 +70,10 @@ namespace BlogManagement.Application
         {
             return _articleCategoryRepository.Search(searchModel);
         }
+
+        public List<ArticleCategoryViewModel> GetSelectList()
+        {
+            return _articleCategoryRepository.GetSelectList();
+        }
     }
 }

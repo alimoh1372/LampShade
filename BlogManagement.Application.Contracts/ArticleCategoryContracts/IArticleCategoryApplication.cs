@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using _0_Framework.Application;
 
 namespace BlogManagement.Application.Contracts.ArticleCategoryContracts
@@ -10,5 +11,6 @@ namespace BlogManagement.Application.Contracts.ArticleCategoryContracts
         EditArticleCategory GetDetails(long id);
 
         List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel);
+        List<ArticleCategoryViewModel> GetSelectList();
     }
 }

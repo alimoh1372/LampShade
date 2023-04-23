@@ -40,7 +40,15 @@
 
     <link href="~/Admin_Theme/assets/toggles/toggles.css" rel="stylesheet" />
 
-
+    <!-- tinyMCE -->
+    <script src="~/Admin_Theme/assets/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+          selector: '#Command_Description'
+      });
+    </script>
+    <!-- /tinyMCE -->
+   
 
 
     <script src="~/Admin_Theme/assets/js/modernizr.min.js"></script>
@@ -384,18 +392,23 @@
     <!-- </script> -->
 
     <script type="text/javascript">
-        const sapn = document.getElementById("datetimenow");
-        const dt = new Date();
-        sapn.innerText = dt.getFullYear();
 
-        $('.persianDateInput').persianDatepicker({
-            format: 'YYYY/MM/DD',
-            autoClose: true,
-            initialValue: false
-        });
+
         $(document).ready(function () {
+            const sapn = document.getElementById("datetimenow");
+            const dt = new Date();
+            sapn.innerText = dt.getFullYear();
+
+            $('.persianDateInput').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                autoClose: true,
+               // initialValue: false,
+                initialValueType: 'persian'
+            });
             $('.toggle').toggles({ on: true });
+
         });
+
     </script>
     @await RenderSectionAsync("Scripts", false)
 </body>

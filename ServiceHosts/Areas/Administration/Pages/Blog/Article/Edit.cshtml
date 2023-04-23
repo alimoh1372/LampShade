@@ -1,0 +1,138 @@
+﻿@page
+@model EditModel
+@{
+
+    Layout = "Shared/_AdminLayout";
+    ViewData["Title"] = "ویرایش مقاله ";
+}
+@if (!string.IsNullOrWhiteSpace(Model.Message))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.Notification.autoHideNotify('error'
+                , 'bottom right'
+                , 'پیغام خطا',
+                '@Model.Message')
+        });
+    </script>
+}
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
+    </div>
+</div>
+
+<form method="post"
+      enctype="multipart/form-data">
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Command.Title" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Command.Title" >
+                <span asp-validation-for="Command.Title" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Command.Slug" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Command.Slug">
+                <span asp-validation-for="Command.Slug" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Command.PublishDate" class="control-label"></label>
+                <input type="text" class="form-control persianDateInput" asp-for="Command.PublishDate">
+                <span asp-validation-for="Command.PublishDate" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Command.FkArticleCategoryId" class="control-label"></label>
+                <select class="form-control" asp-for="Command.FkArticleCategoryId" placeholder="قیمت محصول" asp-items="Model.ArticleCategoryItems">
+                    <option value="0">انتخاب گروه مقاله....</option>
+                </select>
+                <span asp-validation-for="Command.FkArticleCategoryId" class="error"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Command.Picture" class="control-label"></label>
+                <input type="file" class="form-control" asp-for="Command.Picture" accept="image/*">
+                <span asp-validation-for="Command.Picture" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group text-center">
+                <img src="~/@Model.Command.PicturePath" class="image" style="width: 50px; height: 50px;" />
+                <input type="hidden" asp-for="Command.PicturePath" value="@Model.Command.PicturePath" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Command.PictureAlt" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Command.PictureAlt">
+                <span asp-validation-for="Command.PictureAlt" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label asp-for="Command.PictureTitle" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Command.PictureTitle">
+                <span asp-validation-for="Command.PictureTitle" class="error"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Command.ShortDescription" class="control-label"></label>
+                <input class="form-control" asp-for="Command.ShortDescription" onchange="fillField('Command_ShortDescription', 'Command_MetaDescription')">
+                <span asp-validation-for="Command.ShortDescription" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Command.MetaDescription" class="control-label"></label>
+                <input class="form-control" asp-for="Command.MetaDescription" accept="image/*">
+                <span asp-validation-for="Command.MetaDescription" class="error"></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Command.Keywords" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Command.Keywords">
+                <span asp-validation-for="Command.Keywords" class="error"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group no-margin">
+                <label asp-for="Command.Description" class="control-label"></label>
+                <textarea class="form-control autogrow" asp-for="Command.Description"
+                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                <span asp-validation-for="Command.Description" class="error"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="Command.CanonicalAddress" class="control-label"></label>
+                <input type="text" class="form-control" asp-for="Command.CanonicalAddress">
+                <span asp-validation-for="Command.CanonicalAddress" class="error"></span>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id"/>
+    <a type="button" class="btn btn-default waves-effect" asp-page="./Index">بازگشت</a>
+    <button type="submit" class="btn btn-info waves-effect waves-light">ویرایش</button>
+
+</form>
