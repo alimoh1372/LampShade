@@ -1,4 +1,9 @@
-﻿@{
+﻿@using _01_LampshadeQuery.Contracts.Article
+@using _01_LampshadeQuery.Contracts.ArticleCategory
+@using _01_LampshadeQuery.Contracts.Product
+@using _01_LampshadeQuery.Contracts.ProductCategory
+@model _01_LampshadeQuery.Contracts.MenuModel
+@{
 }
 <!--====================  header area ====================-->
 <div class="header-area header-sticky">
@@ -29,82 +34,54 @@
                                         <i class="fa fa-product-hunt"></i>
                                         محصولات
                                     </a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item-has-children">
-                                            <a href="#">آباژور سلطنتی</a>
-                                            @*<ul class="sub-menu">
-                                                <li>
-                                                    <a href="cart.html">Cart</a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkout.html">Checkout</a>
-                                                </li>
-                                                <li>
-                                                    <a href="wishlist.html">Wishlist</a>
-                                                </li>
-                                            </ul>*@
-                                        </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#">آباژور مشکی</a>
-                                            @*<ul class="sub-menu">
-                                                <li>
-                                                    <a href="my-account.html">My Account</a>
-                                                </li>
-                                                <li>
-                                                    <a href="login-register.html">Login Register</a>
-                                                </li>
-                                                <li>
-                                                    <a href="faq.html">FAQ</a>
-                                                </li>
-                                            </ul>*@
-                                        </li>
-                                        @*
-                                        <li class="menu-item-has-children">
-                                            <a href="#">Page list three</a>
-                                            <ul class="sub-menu">
-                                                <li>
-                                                    <a href="compare.html">Compare</a>
-                                                </li>
-                                                <li>
-                                                    <a href="contact.html">Contact</a>
-                                                </li>
-                                                <li>
-                                                    <a href="about.html">About Us</a>
-                                                </li>
-                                            </ul>
-                                        </li>*@
-                                    </ul>
-                                </li>
 
-                                <li class="menu-item-has-children">
-                                    <a href="blog-left-sidebar.html">مقالات</a>
                                     <ul class="sub-menu">
-                                        <li>
-                                            <a href="blog-left-sidebar.html">مقاله شماره 1</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-right-sidebar.html">مقاله شماره 2</a>
-                                        </li>
-                                        @*
-                                        <li>
-                                            <a href="blog-post-left-sidebar.html">Blog Post Left Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-post-right-sidebar.html">Blog Post Right Sidebar</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-post-image-format.html">Blog Post Image Format</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-post-image-gallery.html">Blog Post Image Gallery</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-post-audio-format.html">Blog Post Audio Format</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-post-video-format.html">Blog Post Video Format</a>
-                                        </li>*@
+                                        @foreach (ProductCategoryQueryModel productCategory in Model.ProductCategories)
+                                        {
+                                            <li class="menu-item-has-children">
+                                                <a asp-page="/ProductCategory" asp-route-id="@productCategory.Slug">@productCategory.Name</a>
+                                                @foreach (ProductQueryModel product in productCategory.Products)
+                                                {
+                                                    <ul class="sub-menu">
+
+                                                        <li>
+                                                            <a asp-page="/Product" asp-route-id="@product.Slug">@product.Name</a>
+                                                        </li>
+
+
+                                                    </ul>
+                                                }
+                                            </li>
+                                        }
                                     </ul>
+
+
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">
+                                        <i class="fa fa-newspaper-o"></i>
+                                        مقالات
+                                    </a>
+
+                                    <ul class="sub-menu">
+                                        @foreach (ArticleCategoryQueryModel articleCategory in Model.ArticleCategories)
+                                        {
+                                            <li class="menu-item-has-children">
+                                                <a asp-page="/ArticleCategory" asp-route-id="@articleCategory.Slug">@articleCategory.Name</a>
+                                                <ul class="sub-menu">
+                                                    @foreach (ArticleQueryModel articel in articleCategory.Articles)
+                                                    {
+                                                        <li>
+                                                            <a asp-page="/Product" asp-route-id="@articel.Slug">@articel.Title</a>
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </li>
+                                        }
+                                    </ul>
+
+
                                 </li>
 
                                 <li>
@@ -298,200 +275,66 @@
                                     <li>
                                         <a asp-page="/Index">
                                             <i class="fa fa-home"></i>
-                                            صفحه ی اصلی
+                                            فروشگاه
                                         </a>
                                     </li>
+
                                     <li class="menu-item-has-children">
                                         <a href="#">
                                             <i class="fa fa-product-hunt"></i>
                                             محصولات
                                         </a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item-has-children">
-                                                <a href="#">آباژور سلطنتی</a>
-                                                @*<ul class="sub-menu">
-                                                    <li>
-                                                        <a href="cart.html">Cart</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="checkout.html">Checkout</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="wishlist.html">Wishlist</a>
-                                                    </li>
-                                                </ul>*@
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="#">آباژور مشکی</a>
-                                                @*<ul class="sub-menu">
-                                                    <li>
-                                                        <a href="my-account.html">My Account</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="login-register.html">Login Register</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="faq.html">FAQ</a>
-                                                    </li>
-                                                </ul>*@
-                                            </li>
-                                            @*
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Page list three</a>
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <a href="compare.html">Compare</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="contact.html">Contact</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="about.html">About Us</a>
-                                                    </li>
-                                                </ul>
-                                            </li>*@
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="blog-left-sidebar.html">مقالات</a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="blog-left-sidebar.html">مقاله شماره 1</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-right-sidebar.html">مقاله شماره 2</a>
-                                            </li>
-                                            @*
-                                            <li>
-                                                <a href="blog-post-left-sidebar.html">Blog Post Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-right-sidebar.html">Blog Post Right Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-image-format.html">Blog Post Image Format</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-image-gallery.html">Blog Post Image Gallery</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-audio-format.html">Blog Post Audio Format</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-video-format.html">Blog Post Video Format</a>
-                                            </li>*@
-                                        </ul>
-                                    </li>
-                                    @*
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Shop</a>
-                                        <ul class="sub-menu">
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Shop Grid</a>
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <a href="shop-3-column.html">shop 3 column</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-4-column.html">shop 4 column</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-left-sidebar.html">shop left sidebar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-right-sidebar.html">shop right sidebar</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Shop List</a>
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <a href="shop-list.html">shop List</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-list-left-sidebar.html">shop List Left Sidebar</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-list-right-sidebar.html">shop List Right Sidebar</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Single Product One</a>
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <a href="single-product.html">Single Product</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-variable.html">Single Product variable</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-affiliate.html">Single Product affiliate</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-group.html">Single Product group</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-tabstyle-2.html">Tab Style 2</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-tabstyle-3.html">Tab Style 3</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="menu-item-has-children">
-                                                <a href="#">Single Product Two</a>
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <a href="single-product-gallery-left.html">Gallery Left</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-gallery-right.html">Gallery Right</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-sticky-left.html">Sticky Left</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-sticky-right.html">Sticky Right</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="single-product-slider-box.html">Slider Box</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="blog-left-sidebar.html">Blog Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-right-sidebar.html">Blog Right Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-left-sidebar.html">Blog Post Left Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-right-sidebar.html">Blog Post Right Sidebar</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-image-format.html">Blog Post Image Format</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-image-gallery.html">Blog Post Image Gallery</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-audio-format.html">Blog Post Audio Format</a>
-                                            </li>
-                                            <li>
-                                                <a href="blog-post-video-format.html">Blog Post Video Format</a>
-                                            </li>
-                                        </ul>
-                                    </li>*@
 
+                                        <ul class="sub-menu">
+                                            @foreach (ProductCategoryQueryModel productCategory in Model.ProductCategories)
+                                            {
+                                                <li class="menu-item-has-children">
+                                                    <a asp-page="/ProductCategory" asp-route-id="@productCategory.Slug">@productCategory.Name</a>
+                                                    <ul class="sub-menu">
+                                                        @foreach (ProductQueryModel product in productCategory.Products)
+                                                        {
+                                                            <li>
+                                                                <a asp-page="/Product" asp-route-id="@product.Slug">@product.Name</a>
+                                                            </li>
+                                                        }
+
+                                                    </ul>
+                                                </li>
+                                            }
+                                        </ul>
+
+
+                                    </li>
+                                    <li class="menu-item-has-children">
+                                        <a href="#">
+                                            <i class="fa fa-product-hunt"></i>
+                                            مقالات
+                                        </a>
+
+                                        <ul class="sub-menu">
+                                            @foreach (ArticleCategoryQueryModel articleCategory in Model.ArticleCategories)
+                                            {
+                                                <li class="menu-item-has-children">
+                                                    <a asp-page="/ArticleCategory" asp-route-id="@articleCategory.Slug">@articleCategory.Name</a>
+                                                    <ul class="sub-menu">
+                                                        @foreach (ArticleQueryModel articel in articleCategory.Articles)
+                                                        {
+                                                            <li>
+                                                                <a asp-page="/Product" asp-route-id="@articel.Slug">@articel.Title</a>
+                                                            </li>
+                                                        }
+
+                                                    </ul>
+                                                </li>
+                                            }
+                                        </ul>
+
+
+                                    </li>
+
+                                    <li>
+                                        <a asp-page="/Contact">تماس با ما</a>
+                                    </li>
                                 </ul>
                             </nav>
                             <div class="offcanvas-settings">

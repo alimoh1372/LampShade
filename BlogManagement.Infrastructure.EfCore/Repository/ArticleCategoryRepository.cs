@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlogManagement.Infrastructure.EfCore.Repository
 {
-    public class ArticleCategoryRepository:BaseRepository<long,ArticleCategory>,IArticleCategoryRepository
+    public class ArticleCategoryRepository : BaseRepository<long, ArticleCategory>, IArticleCategoryRepository
     {
         private readonly BlogContext _context;
-        public ArticleCategoryRepository( BlogContext context) : base(context)
+        public ArticleCategoryRepository(BlogContext context) : base(context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace BlogManagement.Infrastructure.EfCore.Repository
             return _context.ArticleCategories.Select(x => new EditArticleCategory
             {
                 Name = x.Name,
-                PicturePath=x.Picture,
+                PicturePath = x.Picture,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 Description = x.Description,
@@ -36,17 +36,19 @@ namespace BlogManagement.Infrastructure.EfCore.Repository
 
         public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel)
         {
-            var query = _context.ArticleCategories.Select(x => new ArticleCategoryViewModel
-            {
-                Id=x.Id,
-                Name = x.Name,
-                Picture = x.Picture,
-                ShowOrder = x.ShowOrder,
-                CreationDate=x.CreationDate.ToFarsi(),
-                PictureAlt=x.PictureAlt,
-                PictureTitle=x.PictureTitle,
-                Description=x.Description
-            });
+            var query = _context.ArticleCategories.Include(x => x.Articles)
+                .Select(x => new ArticleCategoryViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Picture = x.Picture,
+                    ShowOrder = x.ShowOrder,
+                    CreationDate = x.CreationDate.ToFarsi(),
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    Description = x.Description,
+                    ArticleCounts = x.Articles.Count
+                });
             if (!string.IsNullOrWhiteSpace(searchModel.Name))
             {
                 query = query.Where(x => x.Name.Contains(searchModel.Name));
@@ -57,9 +59,9 @@ namespace BlogManagement.Infrastructure.EfCore.Repository
 
         public string GetSlugBy(long id)
         {
-           return _context.ArticleCategories
-               .Select(x => new { x.Id, x.Slug })
-               .FirstOrDefault(x => x.Id==id)?.Slug;
+            return _context.ArticleCategories
+                .Select(x => new { x.Id, x.Slug })
+                .FirstOrDefault(x => x.Id == id)?.Slug;
         }
 
         public List<ArticleCategoryViewModel> GetSelectList()
