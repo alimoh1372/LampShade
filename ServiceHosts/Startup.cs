@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 using _0_Framework.Application;
 using BlogManagement.Infrastructure.Configuration;
@@ -41,6 +43,9 @@ namespace ServiceHosts
             InventoryManagementBootstrapper.Configure(services,connectionString);
             BlogManagementBootstrapper.Configure(services,connectionString);
             services.AddTransient<IFileUpload, FileUpload>();
+
+
+            services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
             services.AddRazorPages();
         }
 
