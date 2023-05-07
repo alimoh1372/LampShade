@@ -72,7 +72,7 @@
                                                     @foreach (ArticleQueryModel articel in articleCategory.Articles)
                                                     {
                                                         <li>
-                                                            <a asp-page="/Product" asp-route-id="@articel.Slug">@articel.Title</a>
+                                                            <a asp-page="/ArticleCategory" asp-route-id="@articel.Slug">@articel.Title</a>
                                                         </li>
                                                     }
 

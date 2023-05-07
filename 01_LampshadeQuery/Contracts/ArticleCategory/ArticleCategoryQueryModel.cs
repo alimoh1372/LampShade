@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using _01_LampshadeQuery.Contracts.Article;
 
 namespace _01_LampshadeQuery.Contracts.ArticleCategory
@@ -13,8 +14,11 @@ namespace _01_LampshadeQuery.Contracts.ArticleCategory
         public string Description { get;  set; }
         public int ShowOrder { get;  set; }
         public string Slug { get;  set; }
+        public string Keywords { get; set; }
         public long ArticleCounts { get;  set; }
         public long Id { get; set; }
         public List<ArticleQueryModel> Articles { get; set; }
+        public List<string> KeywordList { get; set; }
+       
     }
 }
