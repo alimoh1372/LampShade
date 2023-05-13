@@ -54,7 +54,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.Product
                 ProductCategories = _productCategoryApplication.Search(null)
         };
             
-            return Partial("Create", model);
+            return Partial("RegisterAccount", model);
         }
 
         public JsonResult OnPostCreate(CreateProduct command)

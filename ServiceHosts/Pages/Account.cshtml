@@ -32,9 +32,9 @@
                     <div class="page-content-wrapper">
                         <div class="row">
                             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6">
-                                @if (Model.Message != null)
+                                @if (Model.LoginMessage != null)
                                 {
-                                    <div class="alert alert-danger">@Model.Message</div>
+                                    <div class="alert alert-danger">@Model.LoginMessage</div>
                                 }
                                 <form method="post" asp-page-handler="Login">
                                     <div class="login-form">
@@ -70,38 +70,42 @@
                                 </form>
                             </div>
                             <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-                                <form action="#">
+                                @if (Model.RegisterMessage != null)
+                                {
+                                    <div class="alert alert-danger">@Model.RegisterMessage</div>
+                                }
+                            <form method="post" asp-page-handler="Register">
 
-                                    <div class="login-form">
-                                        <h4 class="login-title">ثبت نام</h4>
+                                <div class="login-form">
+                                    <h4 class="login-title">ثبت نام</h4>
 
-                                        <div class="row">
-                                            <div class="col-md-6 col-12 mb-20">
-                                                <label>نام کامل</label>
-                                                <input type="text" name="fullname" placeholder="نام کامل">
-                                            </div>
-                                            <div class="col-md-6 col-12 mb-20">
-                                                <label>نام کاربری</label>
-                                                <input type="text" name="username" placeholder="نام کاربری">
-                                            </div>
-                                            <div class="col-md-12 mb-20">
-                                                <label>موبایل</label>
-                                                <input type="number" name="mobile" placeholder="موبایل">
-                                            </div>
-                                            <div class="col-md-6 mb-20">
-                                                <label>کلمه رمز</label>
-                                                <input type="password" name="password" placeholder="کلمه رمز">
-                                            </div>
-                                            <div class="col-md-6 mb-20">
-                                                <label>تایید کلمه رمز</label>
-                                                <input type="password" name="rePassword" placeholder="تایید کلمه رمز">
-                                            </div>
-                                            <div class="col-12">
-                                                <button class="register-button mt-0">ثبت نام</button>
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>نام کامل</label>
+                                            <input type="text" name="fullname" placeholder="نام کامل">
+                                        </div>
+                                        <div class="col-md-6 col-12 mb-20">
+                                            <label>نام کاربری</label>
+                                            <input type="text" name="username" placeholder="نام کاربری">
+                                        </div>
+                                        <div class="col-md-12 mb-20">
+                                            <label>موبایل</label>
+                                            <input type="number" name="mobile" placeholder="موبایل">
+                                        </div>
+                                        <div class="col-md-6 mb-20">
+                                            <label>کلمه رمز</label>
+                                            <input type="password" name="password" placeholder="کلمه رمز">
+                                        </div>
+                                        <div class="col-md-6 mb-20">
+                                            <label>تایید کلمه رمز</label>
+                                            <input type="password" name="rePassword" placeholder="تایید کلمه رمز">
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="register-button mt-0">ثبت نام</button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                             </div>
                         </div>
                     </div>

@@ -10,6 +10,7 @@ using ShopManagement.Application.Contracts.ProductContracts;
 
 namespace ServiceHosts.Areas.Administration.Pages.Discount.ColleagueDiscount
 {
+   // [Authorize(Roles = Roles.Administrator)]
     public class IndexModel : PageModel
     {
         [TempData] public string Message { get; set; }
@@ -42,7 +43,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Discount.ColleagueDiscount
             };
 
 
-            return Partial("Create", model);
+            return Partial("RegisterAccount", model);
         }
 
         public JsonResult OnPostCreate(DefineColleagueDiscount command)

@@ -31,7 +31,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.Slide
 
         public IActionResult OnGetCreate()
         {
-            return Partial("Create");
+            return Partial("RegisterAccount");
         }
 
         public JsonResult OnPostCreate(CreateSlide command)

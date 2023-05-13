@@ -1,16 +1,21 @@
 using System.Collections.Generic;
 using _0_Framework.Application;
+using _0_Framework.Infrastructure;
+using AccountManagement.Infrastructure.Configuration;
 using DiscountManagement.Application.Contracts.ColleagueDiscountContracts;
 using InventoryManagement.ApplicationContracts.InventoryContracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using ShopManagement.Application.Contracts.ProductContracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServiceHosts.Areas.Administration.Pages.Inventory
 {
+    [Authorize(Roles = Roles.Administrator)]
     public class IndexModel : PageModel
     {
+        
         [TempData] public string Message { get; set; }
         public List<InventoryViewModel> InventoryViewModels { get; set; }
 
@@ -41,7 +46,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Inventory
             };
 
 
-            return Partial("Create", model);
+            return Partial("RegisterAccount", model);
         }
 
         public JsonResult OnPostCreate(CreateInventory command)

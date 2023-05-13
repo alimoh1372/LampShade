@@ -50,7 +50,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.ProductPicture
                 Products = _productApplication.Search(null)
         };
             
-            return Partial("Create", model);
+            return Partial("RegisterAccount", model);
         }
 
         public JsonResult OnPostCreate(CreateProductPicture command)

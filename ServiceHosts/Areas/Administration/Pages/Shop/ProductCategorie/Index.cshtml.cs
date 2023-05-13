@@ -3,9 +3,11 @@ using _0_Framework.Application;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShopManagement.Application.Contracts.ProductCategoryContracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServiceHosts.Areas.Administration.Pages.Shop.ProductCategorie
 {
+    //[Authorize(Roles = "1, 3")]
     public class IndexModel : PageModel
     {
         public List<ProductCategoryViewModel> ProductCategoryViewModels { get; set; }
@@ -26,7 +28,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Shop.ProductCategorie
 
         public IActionResult OnGetCreate()
         {
-            return Partial("Create", new CreateProductCategory());
+            return Partial("RegisterAccount", new CreateProductCategory());
         }
 
         public JsonResult OnPostCreate(CreateProductCategory command)
