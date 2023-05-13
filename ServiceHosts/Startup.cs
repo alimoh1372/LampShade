@@ -11,13 +11,16 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
 using _0_Framework.Application;
+using AccountManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using DiscountManagement.Infrastructure.Configuration;
 using InventoryManagement.Infrastructure.Configuration;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using ServiceHosts.Tools;
 using ShopManagement.Configuration;
 using ShopManagement.Infrastructure.EfCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace ServiceHosts
 {
@@ -33,6 +36,9 @@ namespace ServiceHosts
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddHttpContextAccessor();
+
             //string connectionString = Configuration.GetConnectionString("LampShadeDbHome");
             string connectionString = Configuration.GetConnectionString("LampShadeDbNoc");
 
@@ -42,9 +48,24 @@ namespace ServiceHosts
 
             InventoryManagementBootstrapper.Configure(services,connectionString);
             BlogManagementBootstrapper.Configure(services,connectionString);
+
+            AccountManagementBootstrapper.Configure(services,connectionString);
+
+            services.AddSingleton<IPasswordHasher, PasswordHasher>();
             services.AddTransient<IFileUpload, FileUpload>();
+            services.AddTransient<IAuthHelper, AuthHelper>();
 
+            services.Configure<CookiePolicyOptions>(options => {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.Strict;
+            });
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o => {
+                    o.LoginPath = new PathString("/Account");
+                    o.LogoutPath = new PathString("/Account");
+                    o.AccessDeniedPath = new PathString("/AccessDenied");
+                });
             services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
             services.AddRazorPages();
         }
@@ -62,9 +83,12 @@ namespace ServiceHosts
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseCookiePolicy();
 
             app.UseRouting();
 
