@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using _0_Framework.Application;
 using AccountManagement.Application.Contracts.AccountContracts;
 using AccountManagement.Domain.AccountAgg;
+using AccountManagement.Domain.RoleAgg;
 
 namespace AccountManagement.Application
 {
@@ -12,10 +14,12 @@ namespace AccountManagement.Application
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAccountRepository _accountRepository;
         private readonly IAuthHelper _authHelper;
+        private readonly IRoleRepository _roleRepository;
         public AccountApplication(IAccountRepository accountRepository, IPasswordHasher passwordHasher,
-            IFileUpload fileUploader, IAuthHelper authHelper)
+            IFileUpload fileUploader, IAuthHelper authHelper, IRoleRepository roleRepository)
         {
             _authHelper = authHelper;
+            _roleRepository = roleRepository;
             _fileUploader = fileUploader;
             _passwordHasher = passwordHasher;
             _accountRepository = accountRepository;
@@ -47,7 +51,8 @@ namespace AccountManagement.Application
             var password = _passwordHasher.Hash(command.Password);
             var path = $"profilePhotos";
             var picturePath = _fileUploader.UploadFile(command.ProfilePhoto, path);
-            var account = new Account(command.Fullname, command.Username, password, command.Mobile, command.RoleId, picturePath);
+            var account = new Account(command.Fullname, command.Username, password, command.Mobile, command.RoleId,
+                picturePath);
             _accountRepository.Create(account);
             _accountRepository.SaveChanges();
             return operation.Succedded();
@@ -82,12 +87,21 @@ namespace AccountManagement.Application
             if (account == null)
                 return operation.Failed(ApplicationMessage.WrongUserPass);
 
-            (bool Verified, bool NeedsUpgrade) result = _passwordHasher.Check(account.Password, command.Password);
+            var result = _passwordHasher.Check(account.Password, command.Password);
             if (!result.Verified)
                 return operation.Failed(ApplicationMessage.WrongUserPass);
 
-            var authViewModel = new AuthViewModel(account.Id, account.RoleId, account.Fullname, account.Username);
+            var permissions = _roleRepository.Get(account.RoleId)
+                .Permissions
+                .Select(x => x.Code)
+                .ToList();
+
+
+            var authViewModel = new AuthViewModel(account.Id, account.RoleId, account.Fullname, account.Username,
+                permissions);
+
             _authHelper.Signin(authViewModel);
+
             return operation.Succedded();
         }
 

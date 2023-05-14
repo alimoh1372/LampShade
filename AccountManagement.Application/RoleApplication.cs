@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using _0_Framework.Application;
 using AccountManagement.Application.Contracts.RoleContracts;
+using AccountManagement.Domain.PermissionAgg;
 using AccountManagement.Domain.RoleAgg;
 
 namespace AccountManagement.Application
 {
-    public class RoleApplication:IRoleApplication
+    public class RoleApplication : IRoleApplication
     {
-
         private readonly IRoleRepository _roleRepository;
 
         public RoleApplication(IRoleRepository roleRepository)
@@ -21,7 +21,7 @@ namespace AccountManagement.Application
             if (_roleRepository.IsExists(x => x.Name == command.Name))
                 return operation.Failed(ApplicationMessage.Duplication);
 
-            var role = new Role(command.Name);
+            var role = new Role(command.Name, new List<Permission>());
             _roleRepository.Create(role);
             _roleRepository.SaveChanges();
             return operation.Succedded();
@@ -37,7 +37,10 @@ namespace AccountManagement.Application
             if (_roleRepository.IsExists(x => x.Name == command.Name && x.Id != command.Id))
                 return operation.Failed(ApplicationMessage.NotFound);
 
-            role.Edit(command.Name);
+            var permissions = new List<Permission>();
+            command.Permissions.ForEach(code => permissions.Add(new Permission(code)));
+
+            role.Edit(command.Name, permissions);
             _roleRepository.SaveChanges();
             return operation.Succedded();
         }
@@ -51,6 +54,5 @@ namespace AccountManagement.Application
         {
             return _roleRepository.List();
         }
-
     }
 }

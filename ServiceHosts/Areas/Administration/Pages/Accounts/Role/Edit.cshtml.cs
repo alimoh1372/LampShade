@@ -12,6 +12,7 @@ namespace ServiceHosts.Areas.Administration.Pages.Accounts.Role
 {
     public class EditModel : PageModel
     {
+
         public EditRole Command;
         public List<SelectListItem> Permissions = new List<SelectListItem>();
         private readonly IRoleApplication _roleApplication;
@@ -58,5 +59,6 @@ namespace ServiceHosts.Areas.Administration.Pages.Accounts.Role
             var result = _roleApplication.Edit(command);
             return RedirectToPage("Index");
         }
+
     }
 }

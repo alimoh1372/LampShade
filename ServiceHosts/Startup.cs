@@ -79,6 +79,10 @@ namespace ServiceHosts
                     builder => builder.RequireRole(new List<string> { Roles.Administrator }));
             });
             services.AddRazorPages()
+                .AddMvcOptions(mvcOptions =>
+                {
+                    mvcOptions.Filters.Add<SecurityPageFilter>();
+                })
                 .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AuthorizeAreaFolder("Administration", "/", "AdminArea");
