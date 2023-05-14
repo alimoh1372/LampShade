@@ -9,4 +9,8 @@
     <ProjectReference Include="..\AccountManegement.Application.Contracts\AccountManagement.Application.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="PermissionAgg\" />
+  </ItemGroup>
+
 </Project>

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\SM.Application\ShopManagement.Application.Contracts.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Permissions\" />
+  </ItemGroup>
+
 </Project>

@@ -12,6 +12,14 @@ namespace AccountManagement.Infrastructure.EfCore.Mapping
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
+
+            builder.OwnsMany(x => x.Permissions, modelBuilder =>
+            {
+                modelBuilder.ToTable("RolePermissions");
+                modelBuilder.HasKey(x => x.Id);
+                modelBuilder.Ignore(x => x.Name);
+                modelBuilder.WithOwner(x => x.Role);
+            });
         }
     }
 }

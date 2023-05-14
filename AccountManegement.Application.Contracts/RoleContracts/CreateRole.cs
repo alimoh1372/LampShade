@@ -1,7 +1,10 @@
-﻿namespace AccountManagement.Application.Contracts.RoleContracts
+﻿using System.Collections.Generic;
+
+namespace AccountManagement.Application.Contracts.RoleContracts
 {
     public class CreateRole
     {
         public string Name { get; set; }
+        public List<int> Permissions { get; set; }
     }
 }
